@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Components //
-import { Header, LoginForm, SignUpModal } from '../../components';
+import { Header, LoginForm, SignUpModal, About } from '../../components';
 
 const LandingPage = () => {
 	const [showSignupModal, setShowSignupModal] = useState(false);
@@ -49,6 +49,7 @@ const LandingPage = () => {
 			<LoginForm handleLogin={handleLogin} />
 			<button onClick={showModal}>Sign Up</button>
 			<SignUpModal handleSignUp={handleSignUp} closeModal={closeModal} shown={showSignupModal} />
+			<About />
 		</>
 	);
 };

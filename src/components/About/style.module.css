@@ -1,0 +1,19 @@
+.aboutMeSection {
+	width: 100%;
+	background-color: green;
+
+	padding: 30px;
+	display: flex;
+	justify-content: center;
+}
+.aboutMeSection * {
+	margin: 30px;
+}
+
+.images {
+	height: 300px;
+}
+
+/* .aboutMeSectionText {
+	padding-left: 30px;
+} */
