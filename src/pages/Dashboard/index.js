@@ -1,5 +1,13 @@
 import React from 'react';
+import { NavBar } from '../../components';
 
 export default () => {
-	return <main></main>;
+	return (
+		<>
+			<NavBar />
+			<main>
+				<h1>Hello Dashboard</h1>
+			</main>
+		</>
+	);
 };
