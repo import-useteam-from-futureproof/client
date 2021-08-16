@@ -8,7 +8,13 @@ const LandingPage = () => {
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		console.log(e);
+
+		const userDetails = {
+			username: e.target.loginUsername.value,
+			password: e.target.loginPassword.value,
+		};
+
+		console.log(userDetails);
 		return;
 	};
 
