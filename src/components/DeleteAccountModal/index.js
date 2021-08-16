@@ -9,7 +9,7 @@ export default ({ isVisible, closeModal }) => {
 
 	return (
 		<section style={modalStyle} className={styles.deleteAccountModal}>
-			<div role="presentation">
+			<div role='presentation'>
 				<button onClick={closeModal}>&times;</button>
 				<p>Are you sure you want to delete your account?</p>
 				<p className={styles.warning}>THIS ACTION IS IRREVERSIBLE</p>
