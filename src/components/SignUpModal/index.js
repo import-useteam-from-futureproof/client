@@ -9,25 +9,25 @@ const SignUpModal = ({ handleSignUp, closeModal, shown }) => {
 
 	return (
 		<section style={modalStyle} className={styles.registerAccountModal}>
-			<button onClick={closeModal}>Close</button>
 			<form aria-label="sign up" onSubmit={handleSignUp}>
 				<label>
 					Email:
-					<input type="email" placeholder="email" />
+					<input id="email" type="email" placeholder="email" />
 				</label>
 				<label>
 					Username:
-					<input type="email" placeholder="username" />
+					<input id="username" type="text" placeholder="username" />
 				</label>
 				<label>
 					Password:
-					<input type="password" placeholder="password" />
+					<input id="password" type="password" placeholder="password" />
 				</label>
 				<label>
 					Confirm Password:
-					<input type="password" placeholder="confirm password" />
+					<input id="passwordConfirm" type="password" placeholder="confirm password" />
 				</label>
 				<input type="submit" />
+				<input onClick={closeModal} type="button" value="Cancel" />
 			</form>
 		</section>
 	);

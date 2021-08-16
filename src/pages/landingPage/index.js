@@ -22,7 +22,18 @@ const LandingPage = () => {
 
 	const handleSignUp = (e) => {
 		e.preventDefault();
-		console.log(e);
+
+		if (e.target.password.value !== e.target.passwordConfirm.value) {
+			console.log("passwords don't match");
+			return;
+		}
+
+		const userDetails = {
+			email: e.target.email.value,
+			username: e.target.username.value,
+			password: e.target.password.value,
+		};
+		console.log(userDetails);
 		return;
 	};
 
