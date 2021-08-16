@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 
 // Components //
-import { Header, LoginForm, SignUpModal } from '../../components';
+import { Header, LoginForm, SignUpModal, About } from '../../components';
 
 const LandingPage = () => {
 	const [showSignupModal, setShowSignupModal] = useState(false);
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		console.log(e);
+
+		const userDetails = {
+			username: e.target.loginUsername.value,
+			password: e.target.loginPassword.value,
+		};
+
+		console.log(userDetails);
 		return;
 	};
 
@@ -43,6 +49,7 @@ const LandingPage = () => {
 			<LoginForm handleLogin={handleLogin} />
 			<button onClick={showModal}>Sign Up</button>
 			<SignUpModal handleSignUp={handleSignUp} closeModal={closeModal} shown={showSignupModal} />
+			<About />
 		</>
 	);
 };
