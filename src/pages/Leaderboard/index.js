@@ -1,12 +1,14 @@
 import React from 'react';
 import { NavBar } from '../../components';
+import { Leaderboard } from '../../layout';
 
 export default () => {
 	return (
 		<>
 			<NavBar />
 			<main>
-				<h1>Hello Leaderboard</h1>
+				<h1>High Scores</h1>
+				<Leaderboard />
 			</main>
 		</>
 	);
