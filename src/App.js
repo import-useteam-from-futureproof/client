@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { Profile, LandingPage, Leaderboard, Dashboard, Quiz, NotFound } from './pages';
 
+import './style.css';
+
 export default function App() {
 	return (
 		<AuthProvider>
