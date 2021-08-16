@@ -4,7 +4,7 @@ const LoginForm = ({ handleLogin }) => {
 	return (
 		<form aria-label="login form" onSubmit={handleLogin}>
 			<label>
-				Username: <input id="loginUsername" type="text" placeholder="username" />
+				Email: <input id="loginEmail" type="email" placeholder="email" />
 			</label>
 			<label>
 				Password: <input id="loginPassword" type="password" placeholder="password" />
