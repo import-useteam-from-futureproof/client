@@ -18,7 +18,9 @@ export default () => {
 			<NavBar />
 			<main>
 				<h1>Hello Profile</h1>
-				<button onClick={handleDeleteClick}>Delete Account</button>
+				<button aria-label="access delete account button" onClick={handleDeleteClick}>
+					Delete Account
+				</button>
 			</main>
 		</>
 	);
