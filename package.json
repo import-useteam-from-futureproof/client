@@ -1,8 +1,8 @@
 {
-	"name": "client",
+	"name": "client-1",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": ".eslintrc.js",
 	"scripts": {
 		"test": "jest --watch --verbose --setupFilesAfterEnv ./src/test/setupTests.js",
 		"dev": "webpack-cli serve --mode development --config config/webpack.config.dev.js",
@@ -15,9 +15,17 @@
 			"\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
 		}
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/danjcooper/client-1.git"
+	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/danjcooper/client-1/issues"
+	},
+	"homepage": "https://github.com/danjcooper/client-1#readme",
 	"devDependencies": {
 		"@babel/core": "^7.15.0",
 		"@babel/plugin-proposal-class-properties": "^7.14.5",
@@ -31,7 +39,6 @@
 		"css-loader": "^6.2.0",
 		"eslint": "^7.32.0",
 		"eslint-plugin-react": "^7.24.0",
-		"favicons": "^6.2.2",
 		"favicons-webpack-plugin": "^5.0.2",
 		"html-webpack-plugin": "^5.3.2",
 		"jest": "^27.0.6",
