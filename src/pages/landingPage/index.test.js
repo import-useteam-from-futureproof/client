@@ -6,7 +6,7 @@ describe('header', () => {
 		render(<Header />);
 	});
 	test('Our strapline is present', () => {
-		let strapline = screen.getByLabelText('login form');
+		let strapline = screen.getByLabelText('strapline');
 		expect(strapline).toBeInTheDocument();
 	});
 });
