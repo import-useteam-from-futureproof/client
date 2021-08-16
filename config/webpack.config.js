@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
+const Dotenv = require('dotenv-webpack');
+
 const ROOT_DIRECTORY = path.join(__dirname, '../');
 const PUBLIC_DIRECTORY = path.join(ROOT_DIRECTORY, 'public');
 
@@ -32,6 +34,7 @@ const config = {
 		new HtmlWebpackPlugin({
 			template: path.join(PUBLIC_DIRECTORY, 'index.html'),
 		}),
+		new Dotenv({ path: path.resolve(ROOT_DIRECTORY, './src/.env') }),
 		new FaviconsWebpackPlugin(path.resolve(PUBLIC_DIRECTORY, 'logo.png')),
 	],
 	module: {
