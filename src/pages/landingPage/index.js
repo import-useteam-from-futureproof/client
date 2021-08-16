@@ -10,7 +10,7 @@ const LandingPage = () => {
 		e.preventDefault();
 
 		const userDetails = {
-			username: e.target.loginUsername.value,
+			email: e.target.loginEmail.value,
 			password: e.target.loginPassword.value,
 		};
 
