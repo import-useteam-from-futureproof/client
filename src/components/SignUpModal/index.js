@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import styles from './style.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 const SignUpModal = ({ throwError, closeModal, shown }) => {
 	const modalStyle = {
 		opacity: shown ? 1 : 0,
 		pointerEvents: shown ? 'all' : 'none',
 	};
-
-	const history = useHistory();
 
 	const { signup, login } = useAuth();
 
@@ -40,7 +37,6 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 				username: formData.username,
 			});
 			const firebaseLoginResponse = await login(formData.email, formData.password);
-			history.push('/dashboard');
 		} catch (error) {
 			throwError(error.message);
 		}
