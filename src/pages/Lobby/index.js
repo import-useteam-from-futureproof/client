@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavBar } from '../../components';
-import { RoomList } from '../../layout';
+import { RoomList, NewQuiz } from '../../layout';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default () => {
@@ -11,6 +11,7 @@ export default () => {
 			<main>
 				<h1>Hello {currentUser ? currentUser.displayName : null}</h1>
 				<RoomList />
+				<NewQuiz />
 			</main>
 		</>
 	);
