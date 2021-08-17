@@ -1,5 +1,6 @@
 import React from 'react';
+import { Chatroom } from '../../components';
 
 export default () => {
-	return <main></main>;
+	return <Chatroom />;
 };
