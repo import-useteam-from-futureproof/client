@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useQuiz } from '../../contexts/QuizContext';
-import { CreateRoomForm, QuizDetailForm } from '../../components';
+import { CreateRoomForm, CreateQuizForm } from '../../components';
 import { useHistory } from 'react-router-dom';
 
 export default () => {
@@ -37,7 +37,7 @@ export default () => {
 			{showRoomForm ? (
 				<CreateRoomForm onSubmit={handleCreateRoomSubmit} />
 			) : (
-				<QuizDetailForm onSubmit={handleCreateQuizSubmit} />
+				<CreateQuizForm onSubmit={handleCreateQuizSubmit} />
 			)}
 		</section>
 	);
