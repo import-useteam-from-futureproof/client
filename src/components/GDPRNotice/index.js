@@ -9,10 +9,10 @@ const GDPRNotice = () => {
 	};
 
 	return (
-		<div className={hidden ? styles.hidden : styles.gdprNotice}>
+		<div aria-label="gdpr notice" className={hidden ? styles.hidden : styles.gdprNotice}>
 			<p>
 				<a href="#">Click here to see view our GDPR policy </a>
-				<span onClick={hideGDPR} className={styles.dismiss}>
+				<span aria-label="dismiss the form" onClick={hideGDPR} className={styles.dismiss}>
 					or dismiss this notice
 				</span>
 			</p>
