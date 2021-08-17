@@ -6,7 +6,7 @@ const Review = () => {
 		<article className={styles.reviewArticle}>
 			<h3 className="reviewTitle">I'm a review</h3>
 			<p className="reviewAuthor">Reviewer</p>
-			<p className="reviewBody">
+			<p aria-label="review-body" className="reviewBody">
 				This is the review body
 				<br /> here is some more
 			</p>
