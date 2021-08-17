@@ -10,3 +10,4 @@ export { default as Footer } from './Footer';
 export { default as ErrorModal } from './ErrorModal';
 export { default as CreateQuizForm } from './CreateQuizForm';
 export { default as CreateRoomForm } from './CreateRoomForm';
+export { default as GDPRNotice } from './GDPRNotice';
