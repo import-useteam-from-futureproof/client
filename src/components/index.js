@@ -6,3 +6,4 @@ export { default as NavBar } from './NavBar';
 export { default as About } from './About';
 export { default as Review } from './Review';
 export { default as Footer } from './Footer';
+export { default as ErrorModal } from './ErrorModal';
