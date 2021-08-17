@@ -4,3 +4,4 @@ export { default as Dashboard } from './Dashboard';
 export { default as Quiz } from './Quiz';
 export { default as Leaderboard } from './Leaderboard';
 export { default as NotFound } from './NotFound';
+export { default as GDPR } from './GDPR';
