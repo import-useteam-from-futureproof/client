@@ -31,13 +31,14 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 				console.log("passwords don't match");
 				return;
 			}
-			const firebaseResponse = await signup(formData.email, formData.password);
+			const firebaseResponse = await signup(formData.email, formData.password, formData.username);
 			const apiResponse = await axios.post(`${process.env.BASE_URL}/user`, {
 				id: firebaseResponse.user.uid,
-				username: formData.username,
+				username: firebaseResponse.user.displayName,
 			});
 			const firebaseLoginResponse = await login(formData.email, formData.password);
 		} catch (error) {
+			console.error(error);
 			throwError(error.message);
 		}
 	};
