@@ -8,3 +8,4 @@ export { default as Review } from './Review';
 export { default as RedirectUser } from './RedirectUser';
 export { default as Footer } from './Footer';
 export { default as ErrorModal } from './ErrorModal';
+export { default as GDPRNotice } from './GDPRNotice';
