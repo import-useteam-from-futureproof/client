@@ -1,21 +1,37 @@
 import React from 'react';
 import styles from './style.module.css';
+import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default ({ isVisible, closeModal }) => {
+	const { currentUser, deleteAccount } = useAuth();
+
 	const modalStyle = {
 		opacity: isVisible ? 1 : 0,
 		pointerEvents: isVisible ? 'all' : 'none',
 	};
 
+	const handleDeleteAcount = async () => {
+		try {
+			const userId = currentUser.uid;
+			await axios.delete(`${process.env.BASE_URL}/user/${userId}`);
+			await deleteAccount();
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
 	return (
 		<section style={modalStyle} className={styles.deleteAccountModal}>
-			<div role='presentation'>
+			<div role="presentation">
 				<button onClick={closeModal}>&times;</button>
 				<p>Are you sure you want to delete your account?</p>
-				<p aria-label='warning message' className={styles.warning}>
+				<p aria-label="warning message" className={styles.warning}>
 					THIS ACTION IS IRREVERSIBLE
 				</p>
-				<button aria-label='close modal'>Delete Account</button>
+				<button onClick={handleDeleteAcount} aria-label="delete account">
+					Delete Account
+				</button>
 			</div>
 		</section>
 	);
