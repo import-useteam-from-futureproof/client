@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './style.module.css';
-import { About, Review } from '../../components';
+import { About, Review, Footer } from '../../components';
 import { SignUpLogin } from '../../layout';
 
 const LandingPage = () => {
@@ -13,6 +13,7 @@ const LandingPage = () => {
 				<Review />
 				<Review />
 			</section>
+			<Footer />
 		</>
 	);
 };

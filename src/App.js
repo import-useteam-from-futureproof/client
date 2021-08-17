@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { RedirectUser } from './components';
-import { Profile, LandingPage, Leaderboard, Dashboard, Quiz, NotFound } from './pages';
+import { Profile, LandingPage, Leaderboard, Dashboard, Quiz, NotFound, GDPR } from './pages';
 
 import './style.css';
 
@@ -25,6 +25,9 @@ export default function App() {
 				</Route>
 				<Route path="/profile">
 					<Profile />
+				</Route>
+				<Route path="/GDPR">
+					<GDPR />
 				</Route>
 				<Route exact path="/">
 					<LandingPage />
