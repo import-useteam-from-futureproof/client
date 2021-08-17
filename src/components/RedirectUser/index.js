@@ -8,10 +8,11 @@ export default () => {
 	const { push } = useHistory();
 
 	useEffect(() => {
-		if (currentUser && pathname === '/') {
-			push('/dashboard');
-		}
-		if (!currentUser && pathname !== '/') {
+		if (pathname === '/GDPR') {
+			return;
+		} else if (currentUser && pathname === '/') {
+			push('/lobby');
+		} else if (!currentUser && pathname !== '/') {
 			push('/');
 		}
 	}, [currentUser]);

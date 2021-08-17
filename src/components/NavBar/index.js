@@ -20,8 +20,8 @@ export default () => {
 		<nav>
 			<ul>
 				<li>
-					<NavLink exact to="/dashboard">
-						Dashboard
+					<NavLink exact to="/lobby">
+						Lobby
 					</NavLink>
 				</li>
 				<li>
