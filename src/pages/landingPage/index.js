@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 
+import styles from './style.module.css';
+
 // Components //
-import { Header, LoginForm, SignUpModal, About } from '../../components';
+import { About, Review } from '../../components';
+import { SignUpLogin } from '../../layout';
 
 const LandingPage = () => {
-	const [showSignupModal, setShowSignupModal] = useState(false);
-
-	const closeModal = () => {
-		setShowSignupModal(false);
-	};
-
-	const showModal = () => {
-		setShowSignupModal(true);
-	};
-
 	return (
 		<>
-			<Header />
-			<LoginForm />
-			<button onClick={showModal}>Sign Up</button>
-			<SignUpModal closeModal={closeModal} shown={showSignupModal} />
+			<SignUpLogin />
 			<About />
+			<section className={styles.reviewContainer}>
+				<Review />
+				<Review />
+				<Review />
+			</section>
 		</>
 	);
 };

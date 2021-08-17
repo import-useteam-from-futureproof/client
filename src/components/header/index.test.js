@@ -9,4 +9,12 @@ describe('header', () => {
 		let strapline = screen.getByLabelText('strapline');
 		expect(strapline).toBeInTheDocument();
 	});
+	test('image is present', () => {
+		let logo = screen.getByLabelText('site logo');
+		expect(logo).toBeInTheDocument();
+	});
+	test('header section is rendered', () => {
+		let headerContainer = screen.getByLabelText('header container');
+		expect(headerContainer).toBeInTheDocument();
+	});
 });
