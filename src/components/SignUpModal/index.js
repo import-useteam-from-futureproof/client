@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import styles from './style.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
-const SignUpModal = ({ closeModal, shown }) => {
+const SignUpModal = ({ throwError, closeModal, shown }) => {
 	const modalStyle = {
 		opacity: shown ? 1 : 0,
 		pointerEvents: shown ? 'all' : 'none',
 	};
 
-	const { signup } = useAuth();
+	const history = useHistory();
+
+	const { signup, login } = useAuth();
 
 	const [formData, setFormData] = useState({
 		email: '',
@@ -31,12 +34,15 @@ const SignUpModal = ({ closeModal, shown }) => {
 				console.log("passwords don't match");
 				return;
 			}
-			const response = await signup(formData.email, formData.password);
-			console.log(response);
-
-			// TODO
+			const firebaseResponse = await signup(formData.email, formData.password);
+			const apiResponse = await axios.post(`${process.env.BASE_URL}/user`, {
+				id: firebaseResponse.user.uid,
+				username: formData.username,
+			});
+			const firebaseLoginResponse = await login(formData.email, formData.password);
+			history.push('/dashboard');
 		} catch (error) {
-			console.log(error);
+			throwError(error.message);
 		}
 	};
 
