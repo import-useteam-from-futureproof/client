@@ -29,7 +29,7 @@ export default function App() {
 				<Route path="/profile">
 					<Profile />
 				</Route>
-				<Route path="/GDPR">
+				<Route path="/gdpr">
 					<GDPR />
 				</Route>
 				<Route exact path="/">

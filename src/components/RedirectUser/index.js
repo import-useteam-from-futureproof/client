@@ -8,7 +8,7 @@ export default () => {
 	const { push } = useHistory();
 
 	useEffect(() => {
-		if (pathname === '/GDPR') {
+		if (pathname === '/gdpr') {
 			return;
 		} else if (currentUser && pathname === '/') {
 			push('/lobby');
