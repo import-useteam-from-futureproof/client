@@ -11,7 +11,7 @@ export default () => {
 		if (pathname === '/GDPR') {
 			return;
 		} else if (currentUser && pathname === '/') {
-			push('/dashboard');
+			push('/lobby');
 		} else if (!currentUser && pathname !== '/') {
 			push('/');
 		}
