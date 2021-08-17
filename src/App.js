@@ -10,35 +10,35 @@ import './style.css';
 export default function App() {
 	return (
 		<AuthProvider>
-			<RedirectUser />
-			<Switch>
-				<Route path="/profile">
-					<Profile />
-				</Route>
-				<Route path="/leaderboard">
-					<Leaderboard />
-				</Route>
-				<QuizProvider>
+			<QuizProvider>
+				<RedirectUser />
+				<Switch>
+					<Route path="/profile">
+						<Profile />
+					</Route>
+					<Route path="/leaderboard">
+						<Leaderboard />
+					</Route>
 					<Route path="/lobby">
 						<Lobby />
 					</Route>
 					<Route path="/quiz/:id">
 						<Quiz />
 					</Route>
-				</QuizProvider>
-				<Route path="/profile">
-					<Profile />
-				</Route>
-				<Route path="/gdpr">
-					<GDPR />
-				</Route>
-				<Route exact path="/">
-					<LandingPage />
-				</Route>
-				<Route path="/">
-					<NotFound />
-				</Route>
-			</Switch>
+					<Route path="/profile">
+						<Profile />
+					</Route>
+					<Route path="/gdpr">
+						<GDPR />
+					</Route>
+					<Route exact path="/">
+						<LandingPage />
+					</Route>
+					<Route path="/">
+						<NotFound />
+					</Route>
+				</Switch>
+			</QuizProvider>
 		</AuthProvider>
 	);
 }
