@@ -1,0 +1,29 @@
+.gdprNotice {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+
+	text-align: center;
+
+	padding: 2px;
+	background-color: violet;
+	color: white;
+}
+.gdprNotice a {
+	text-decoration: none;
+	color: rgb(255, 255, 255);
+}
+.gdprNotice a:hover {
+	color: black;
+	cursor: pointer;
+}
+.dismiss {
+	color: rgb(255, 255, 255);
+}
+.dismiss:hover {
+	color: black;
+	cursor: pointer;
+}
+.hidden {
+	display: none;
+}
