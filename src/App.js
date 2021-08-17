@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { RedirectUser } from './components';
 import { Profile, LandingPage, Leaderboard, Dashboard, Quiz, NotFound, GDPR } from './pages';
 
 import './style.css';
@@ -8,6 +9,7 @@ import './style.css';
 export default function App() {
 	return (
 		<AuthProvider>
+			<RedirectUser />
 			<Switch>
 				<Route path="/profile">
 					<Profile />

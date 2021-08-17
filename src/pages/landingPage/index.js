@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useEffect } from 'react';
 import styles from './style.module.css';
-
-// Components //
 import { About, Review, Footer } from '../../components';
 import { SignUpLogin } from '../../layout';
 
