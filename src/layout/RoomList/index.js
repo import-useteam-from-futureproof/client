@@ -61,7 +61,7 @@ export default () => {
 			socket.emit('joinRoom', { roomName: room.id, username });
 			postData(room.id);
 		} else {
-			console.log('You entered the wrong passcode');
+			e.target.children[2].style.display = 'block';
 		}
 	};
 
@@ -108,6 +108,7 @@ export default () => {
 					>
 						<input type="text"></input>
 						<input type="submit" value="Join"></input>
+						<p id="error">That password was incorrect! Try again!</p>
 					</form>
 				</>
 			);
