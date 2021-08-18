@@ -5,6 +5,7 @@ import axios from 'axios';
 export default () => {
 	const { currentUser } = useAuth();
 	const userId = currentUser.uid;
+	const username = currentUser.displayName;
 	const socketServer = 'http://localhost:3000';
 	const API_URL = 'http://localhost:5000';
 	const [rooms, setRooms] = useState([]);
@@ -36,7 +37,8 @@ export default () => {
 		e.preventDefault();
 		let roomName = e.target.getElementsByTagName('p')[0].textContent;
 		const socket = io.connect(socketServer);
-		socket.emit('joinRoom', roomName);
+		console.log(username);
+		socket.emit('joinRoom', { roomName, username });
 		postData(id);
 	};
 
