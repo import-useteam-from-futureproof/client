@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
+import axios from 'axios';
 
 const AuthContext = React.createContext();
 
@@ -12,9 +13,20 @@ export function AuthProvider({ children }) {
 	const [loading, setLoading] = useState(true);
 
 	function signup(email, password, displayName) {
+		const BASE_URL = 'http://localhost:5000';
 		return auth
 			.createUserWithEmailAndPassword(email, password)
-			.then((result) => result.user.updateProfile({ displayName }));
+			.then((result) => {
+				const user = result.user;
+				user.updateProfile({ displayName });
+				return user;
+			})
+			.then((user) => {
+				axios.post(`${BASE_URL}/user`, {
+					firebase_id: user.uid,
+					username: displayName,
+				});
+			});
 	}
 
 	function login(email, password) {
