@@ -63,12 +63,6 @@ export default ({ onSubmit }) => {
 				max={10}
 				required
 			/>
-
-			<input type="submit" />
-
-			<label htmlFor="public">Private</label>
-			<input onChange={handleCheckboxChange} id="public" name="public" type="checkbox" />
-
 			{formData.public ? null : (
 				<>
 					<label htmlFor="password">Room Password</label>
@@ -82,6 +76,10 @@ export default ({ onSubmit }) => {
 					/>
 				</>
 			)}
+			<input type="submit" />
+
+			<label htmlFor="public">Private</label>
+			<input onChange={handleCheckboxChange} id="public" name="public" type="checkbox" />
 		</form>
 	);
 };
