@@ -19,6 +19,7 @@ export default () => {
 	useEffect(async () => {
 		try {
 			const { data } = await axios.get(`${API_URL}/rooms`);
+			data.rooms.reverse();
 			setRooms(data.rooms);
 		} catch (err) {
 			console.log(err);
