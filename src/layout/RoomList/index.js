@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useQuiz } from '../../contexts/QuizContext';
 import io from 'socket.io-client';
 import axios from 'axios';
 import './style.css';
@@ -7,9 +8,12 @@ export default () => {
 	const { currentUser } = useAuth();
 	const userId = currentUser.uid;
 	const username = currentUser.displayName;
-	const socketServer = 'http://localhost:3000';
-	const API_URL = 'http://localhost:5000';
+	const socketServer = 'https://pursuit-of-trivia.herokuapp.com/';
+	const API_URL = process.env.REACT_APP_BASE_URL;
 	const [rooms, setRooms] = useState([]);
+
+	const quiz = useQuiz();
+
 	//fetch all rooms
 	useEffect(async () => {
 		try {
@@ -34,8 +38,11 @@ export default () => {
 		}
 	};
 
-	const joinRoom = (e, id) => {
+	const joinRoom = (e, room) => {
 		e.preventDefault();
+
+		quiz.joinRoom(room);
+
 		let roomName = e.target.getElementsByTagName('p')[0].textContent;
 		let privacy = e.target.getElementsByTagName('p')[1].textContent;
 		if (privacy === 'Private') {
@@ -45,58 +52,58 @@ export default () => {
 			privateForm.style.display = 'block';
 		} else {
 			const socket = io.connect(socketServer);
-			socket.emit('joinRoom', { roomName, username });
-			postData(id);
+			socket.emit('joinRoom', { roomName: room.id, username });
+			postData(room.id);
 		}
 	};
 
-	const joinPrivateRoom = (e, id, passcode) => {
+	const joinPrivateRoom = (e, room, passcode) => {
 		e.preventDefault();
 		let otherForm = e.target.previousElementSibling;
 		let roomName = otherForm.children[0].textContent;
 		if (e.target[0].value === passcode) {
 			const socket = io.connect(socketServer);
-			socket.emit('joinRoom', { roomName, username });
-			postData(id);
+			socket.emit('joinRoom', { roomName: room.id, username });
+			postData(room.id);
 		} else {
 			console.log('You entered the wrong passcode');
 		}
 	};
 
 	const renderRooms = () => {
-		return rooms.map((r, i) => {
+		return rooms.map((room, i) => {
 			let privacy = 'Private';
 			let currentVisitors = 0;
 			let passcode = '';
-			let id = r.id;
-			if (r.participants) {
-				currentVisitors = r.participants.length;
+			let id = room.id;
+			if (room.participants) {
+				currentVisitors = room.participants.length;
 			}
-			if (r.entry_pass) {
-				passcode = r.entry_pass;
+			if (room.entry_pass) {
+				passcode = room.entry_pass;
 			}
-			if (r.public_room) {
+			if (room.public_room) {
 				privacy = 'Public';
 			}
 			return (
 				<>
 					<form
 						onSubmit={(e) => {
-							joinRoom(e, id);
+							joinRoom(e, room);
 						}}
 						key={i}
 						className="room"
 					>
-						<p>{r.name}</p>
+						<p>{room.name}</p>
 						<p>{privacy}</p>
 						<p>
-							{currentVisitors}/{r.max_room_size}
+							{currentVisitors}/{room.max_room_size}
 						</p>
 						<input type="submit" value="Join"></input>
 					</form>
 					<form
 						onSubmit={(e) => {
-							joinPrivateRoom(e, id, passcode);
+							joinPrivateRoom(e, room, passcode);
 						}}
 						key={'private' + i}
 						id="privateJoin"
