@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './style.module.css';
 
 // Components //
-import { About, Reviews, GDPRNotice, Header, FeaturesList } from '../../components';
+import { About, Reviews, GDPRNotice, Header, FeaturesList, MoreInfoTag } from '../../components';
 
 import { SignUpLogin } from '../../layout';
 
@@ -16,6 +16,7 @@ const LandingPage = () => {
 			<FeaturesList />
 			<Reviews />
 			<GDPRNotice />
+			<MoreInfoTag />
 		</>
 	);
 };
