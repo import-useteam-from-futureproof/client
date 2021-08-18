@@ -1,9 +1,20 @@
 .featuresContainer {
 	width: 100%;
-	padding: 30px;
+	padding: 60px;
 	display: flex;
 	justify-content: center;
+
+	color: #1d506d;
+
+	text-align: center;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
 }
 .featuresContainer article {
 	margin: 0 60px;
+}
+.featuresImages {
+	width: 120px;
 }

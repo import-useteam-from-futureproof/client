@@ -5,15 +5,15 @@ const FeaturesList = () => {
 	return (
 		<section className={styles.featuresContainer}>
 			<article>
-				<img></img>
+				<img className={styles.featuresImages} src="../../assets/leaderboard-icon.svg"></img>
 				<h3>Leaderboards</h3>
 			</article>
 			<article>
-				<img></img>
+				<img className={styles.featuresImages} src="../../assets/friends-icon.svg"></img>
 				<h3>Play with friends</h3>
 			</article>
 			<article>
-				<img></img>
+				<img className={styles.featuresImages} src="../../assets/chat-icon.svg"></img>
 				<h3>Built in chat</h3>
 			</article>
 		</section>
