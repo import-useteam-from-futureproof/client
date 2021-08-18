@@ -25,7 +25,6 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 	};
 
 	const handleSignUp = async (e) => {
-		const BASE_URL = 'http://localhost:5000';
 		try {
 			e.preventDefault();
 			if (formData.password !== formData.passwordConfirm) {

@@ -3,7 +3,7 @@ import { auth } from '../firebase';
 import axios from 'axios';
 
 const AuthContext = React.createContext();
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export function useAuth() {
 	return useContext(AuthContext);

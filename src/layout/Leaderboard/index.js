@@ -6,7 +6,7 @@ export default () => {
 	const [isError, setIsError] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const BASE_URL = 'http://localhost:5000';
+	const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 	useEffect(() => {
 		const fetchLeaderboardData = async () => {
