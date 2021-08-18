@@ -14,3 +14,6 @@ export { default as GDPRNotice } from './GDPRNotice';
 export { default as Chatroom } from './Chatroom';
 export { default as ChatLog } from './ChatLog';
 export { default as FeaturesList } from './FeaturesList';
+export { default as LobbyWaitingRoom } from './LobbyWaitingRoom';
+export { default as Game } from './Game';
+export { default as Results } from './Results';
