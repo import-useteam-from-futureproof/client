@@ -18,7 +18,6 @@ const SignUpLogin = () => {
 
 	return (
 		<section className={styles.loginContainer}>
-			<Header />
 			<LoginForm />
 			<button className={styles.signUpButton} onClick={showModal}>
 				Sign Up
