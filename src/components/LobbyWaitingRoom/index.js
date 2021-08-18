@@ -4,22 +4,28 @@ import { useAuth } from '../../contexts/AuthContext';
 
 const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 	const [host, setHostBool] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const { roomData } = useQuiz();
 	const { quizData } = useQuiz();
 	const { currentUser } = useAuth();
 
-	useEffect(async () => {
-		// const { data } = await axios.get(`${API_URL}/rooms`);
-		// console.log(data);
-		// console.log(currentUser);
+	useEffect(() => {
+		if (Object.keys(quizData).length !== 0 && Object.keys(roomData).length !== 0) {
+			setLoading(false);
+		}
+
 		if (roomData.owner === currentUser.uid) {
 			setHostBool(true);
 		}
-		console.log(quizData);
-	}, []);
+	}, [quizData]);
 
-	const quizStart = () => {
-		hostStartedQuiz();
+	const quizStart = (e) => {
+		e.preventDefault();
+		hostStartedQuiz(roomData.id);
+	};
+
+	const decidePage = () => {
+		return host ? renderHostPage() : renderParticipantPage();
 	};
 
 	const renderHostPage = () => {
@@ -29,6 +35,7 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 				<h2>Category: {quizData.category}</h2>
 				<h2>Difficulty: {quizData.difficulty}</h2>
 				<h2>Number of questions: {quizData.questions.length}</h2>
+				<h2>Players in room: {roomData.participants.length}</h2>
 				<input type="submit" value="Start the quiz!"></input>
 			</form>
 		);
@@ -38,11 +45,14 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 		return (
 			<div>
 				<h1>Waiting for the host to start the game..</h1>
+				<h2>Category: {quizData.category}</h2>
+				<h2>Difficulty: {quizData.difficulty}</h2>
+				<h2>Number of questions: {quizData.questions.length}</h2>
 			</div>
 		);
 	};
 
-	return <>{host ? renderHostPage() : renderParticipantPage()}</>;
+	return <>{loading ? <h1>Loading room...</h1> : decidePage()}</>;
 };
 
 export default LobbyWaitingRoom;
