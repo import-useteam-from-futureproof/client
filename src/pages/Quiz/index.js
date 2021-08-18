@@ -6,7 +6,6 @@ import { QuizController } from '../../layout';
 
 export default () => {
 	const { id } = useParams();
-
 	const { fetchRoomData } = useQuiz();
 	useEffect(() => {
 		fetchRoomData(id);
