@@ -6,22 +6,24 @@
 	text-align: center;
 
 	padding: 2px;
-	background-color: violet;
+	background-color: #1d506d;
 	color: white;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
 }
 .gdprNotice a {
 	text-decoration: none;
 	color: rgb(255, 255, 255);
 }
 .gdprNotice a:hover {
-	color: black;
+	color: rgb(180, 180, 180);
 	cursor: pointer;
 }
 .dismiss {
 	color: rgb(255, 255, 255);
 }
 .dismiss:hover {
-	color: black;
+	color: rgb(180, 180, 180);
 	cursor: pointer;
 }
 .hidden {

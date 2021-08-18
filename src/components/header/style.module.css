@@ -3,3 +3,9 @@
 	display: block;
 	width: 250px;
 }
+.headerContainer {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	transform: translate(-50%);
+}
