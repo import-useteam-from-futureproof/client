@@ -5,18 +5,25 @@ import { useAuth } from '../../contexts/AuthContext';
 const LobbyWaitingRoom = () => {
 	const [host, setHostBool] = useState(false);
 	const { roomData } = useQuiz();
+	const { quizData } = useQuiz();
 	const { currentUser } = useAuth();
 
 	useEffect(() => {
 		if (roomData.owner === currentUser.uid) {
 			setHostBool(true);
 		}
+		console.log(quizData);
 	}, []);
+
+	const quizStart = () => {};
 
 	const renderHostPage = () => {
 		return (
-			<form>
+			<form onSubmit={quizStart}>
 				<h1>You are the host</h1>
+				<h2>Category: {quizData.category}</h2>
+				<h2>Difficulty: {quizData.difficulty}</h2>
+				<h2>Number of questions: {quizData.questions.length}</h2>
 				<input type="submit" value="Start the quiz!"></input>
 			</form>
 		);
