@@ -18,3 +18,4 @@ export { default as MoreInfoTag } from './MoreInfoTag';
 export { default as LobbyWaitingRoom } from './LobbyWaitingRoom';
 export { default as Game } from './Game';
 export { default as Results } from './Results';
+export { default as QuizCard } from './QuizCard';
