@@ -1,0 +1,27 @@
+.reviewsContainer {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+
+	padding: 0 30px 30px 30px;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+
+	text-align: center;
+}
+.reviewsContainer article {
+	font-size: 19px;
+	width: 300px;
+
+	margin: 60px;
+	color: #1d506d;
+}
+.reviewer {
+	font-weight: 700;
+	margin: 10px 0;
+}
+
+.reviewBody {
+	margin: 10px 0;
+}
