@@ -40,11 +40,8 @@ export default () => {
 
 	const joinRoom = (e, room) => {
 		e.preventDefault();
-
 		quiz.joinRoom(room);
-
-		let roomName = e.target.getElementsByTagName('p')[0].textContent;
-		let privacy = e.target.getElementsByTagName('p')[1].textContent;
+		let privacy = e.target.children[1].id;
 		if (privacy === 'Private') {
 			let privateForm = e.target.nextElementSibling;
 			let oldJoinButton = e.target[0];
@@ -59,8 +56,6 @@ export default () => {
 
 	const joinPrivateRoom = (e, room, passcode) => {
 		e.preventDefault();
-		let otherForm = e.target.previousElementSibling;
-		let roomName = otherForm.children[0].textContent;
 		if (e.target[0].value === passcode) {
 			const socket = io.connect(socketServer);
 			socket.emit('joinRoom', { roomName: room.id, username });
@@ -72,10 +67,11 @@ export default () => {
 
 	const renderRooms = () => {
 		return rooms.map((room, i) => {
+			let privacyIcon =
+				'https://cdn.iconscout.com/icon/premium/png-512-thumb/lock-1967458-1668608.png';
 			let privacy = 'Private';
 			let currentVisitors = 0;
 			let passcode = '';
-			let id = room.id;
 			if (room.participants) {
 				currentVisitors = room.participants.length;
 			}
@@ -83,6 +79,8 @@ export default () => {
 				passcode = room.entry_pass;
 			}
 			if (room.public_room) {
+				privacyIcon =
+					'https://mpng.subpng.com/20180410/bvw/kisspng-computer-icons-globe-world-clip-art-globe-5acd31f76797c0.3831539515233971114243.jpg';
 				privacy = 'Public';
 			}
 			return (
@@ -95,7 +93,7 @@ export default () => {
 						className="room"
 					>
 						<p>{room.name}</p>
-						<p>{privacy}</p>
+						<img className="formIcon" src={privacyIcon} id={privacy}></img>
 						<p>
 							{currentVisitors}/{room.max_room_size}
 						</p>

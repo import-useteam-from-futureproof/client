@@ -13,11 +13,18 @@
 }
 
 .room p,
-.room input {
+.room input,
+.formIcon {
 	display: inline-block;
 	margin-right: 2%;
 }
 
 #privateJoin {
 	display: none;
+}
+
+.formIcon {
+	width: 30px;
+	height: 30px;
+	margin-top: 1.5%;
 }
