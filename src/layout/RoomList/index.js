@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useQuiz } from '../../contexts/QuizContext';
 import io from 'socket.io-client';
@@ -13,12 +14,11 @@ export default () => {
 	const [rooms, setRooms] = useState([]);
 
 	const quiz = useQuiz();
-
+	const { push } = useHistory();
 	//fetch all rooms
 	useEffect(async () => {
 		try {
 			const { data } = await axios.get(`${API_URL}/rooms`);
-			console.log(data);
 			setRooms(data.rooms);
 		} catch (err) {
 			console.log(err);
@@ -26,7 +26,7 @@ export default () => {
 	}, []);
 
 	const redirect = (id) => {
-		window.location.assign(`/quiz/${id}`);
+		push(`/quiz/${id}`);
 	};
 
 	const postData = async (id) => {
@@ -56,6 +56,7 @@ export default () => {
 
 	const joinPrivateRoom = (e, room, passcode) => {
 		e.preventDefault();
+		quiz.joinRoom(room);
 		if (e.target[0].value === passcode) {
 			const socket = io.connect(socketServer);
 			socket.emit('joinRoom', { roomName: room.id, username });
@@ -84,12 +85,11 @@ export default () => {
 				privacy = 'Public';
 			}
 			return (
-				<>
+				<section key={i}>
 					<form
 						onSubmit={(e) => {
 							joinRoom(e, room);
 						}}
-						key={i}
 						className="room"
 					>
 						<p>{room.name}</p>
@@ -103,14 +103,13 @@ export default () => {
 						onSubmit={(e) => {
 							joinPrivateRoom(e, room, passcode);
 						}}
-						key={'private' + i}
 						id="privateJoin"
 					>
 						<input type="text"></input>
 						<input type="submit" value="Join"></input>
 						<p id="error">That password was incorrect! Try again!</p>
 					</form>
-				</>
+				</section>
 			);
 		});
 	};
