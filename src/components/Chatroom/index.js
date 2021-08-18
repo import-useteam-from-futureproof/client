@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { ChatLog } from '../index';
 
 import { io } from 'socket.io-client';
-// this is where out socket is deployed.
-// TODO update the the live socket
+
 const socket = io('https://pursuit-of-trivia.herokuapp.com/');
 
 const Chatroom = () => {
 	const [chatHistory, setChatHistory] = useState([
 		{ username: 'chatbot', message: 'Welcome to the chatroom' },
 	]);
+
 	const [chatInput, setChatInput] = useState('');
 
 	useEffect(() => {
 		socket.on('newMessage', (message) => {
-			console.log(message);
 			updateChatHistory(message);
 		});
 	}, []);

@@ -13,3 +13,4 @@ export { default as CreateRoomForm } from './CreateRoomForm';
 export { default as GDPRNotice } from './GDPRNotice';
 export { default as Chatroom } from './Chatroom';
 export { default as ChatLog } from './ChatLog';
+export { default as FeaturesList } from './FeaturesList';
