@@ -15,6 +15,7 @@ const Chatroom = () => {
 	const [chatInput, setChatInput] = useState('');
 
 	const { roomData } = useQuiz();
+	console.log(`chatroom: ${roomData}`);
 	const { currentUser } = useAuth();
 
 	useEffect(() => {
