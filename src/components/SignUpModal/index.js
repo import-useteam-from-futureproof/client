@@ -32,10 +32,6 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 				return;
 			}
 			const firebaseResponse = await signup(formData.email, formData.password, formData.username);
-			const apiResponse = await axios.post(`${process.env.BASE_URL}/user`, {
-				id: firebaseResponse.user.uid,
-				username: firebaseResponse.user.displayName,
-			});
 			const firebaseLoginResponse = await login(formData.email, formData.password);
 		} catch (error) {
 			console.error(error);

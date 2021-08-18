@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from './style.module.css';
-import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default ({ isVisible, closeModal }) => {
-	const { currentUser, deleteAccount } = useAuth();
+	const { deleteAccount } = useAuth();
 
 	const modalStyle = {
 		opacity: isVisible ? 1 : 0,
@@ -13,8 +12,6 @@ export default ({ isVisible, closeModal }) => {
 
 	const handleDeleteAcount = async () => {
 		try {
-			const userId = currentUser.uid;
-			await axios.delete(`${process.env.BASE_URL}/user/${userId}`);
 			await deleteAccount();
 		} catch (err) {
 			console.error(err);

@@ -1,0 +1,23 @@
+#roomList {
+	margin-left: 2%;
+	width: 50%;
+	border: 1px solid black;
+}
+
+#roomList h1 {
+	text-align: center;
+}
+
+.room {
+	border-top: 1px solid black;
+}
+
+.room p,
+.room input {
+	display: inline-block;
+	margin-right: 2%;
+}
+
+#privateJoin {
+	display: none;
+}
