@@ -47,7 +47,7 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 		<section style={modalStyle} className={styles.registerAccountModal}>
 			<form aria-label="sign up" onSubmit={handleSignUp}>
 				<label>
-					Email:
+					E-mail:
 					<input
 						onChange={handleInputChange}
 						value={formData.email}

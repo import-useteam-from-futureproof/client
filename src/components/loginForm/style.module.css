@@ -1,0 +1,39 @@
+.inputFields {
+	display: block;
+	text-align: center;
+	margin: 15px 0;
+}
+.loginForm {
+	margin: 0 auto;
+	width: 375px;
+}
+.loginForm input[type='submit'] {
+	margin: 25px auto;
+	display: block;
+	border-radius: 50px;
+	border-style: none;
+
+	width: 125px;
+	height: 30px;
+
+	background: #1d506d;
+	color: white;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+.loginForm input[type='submit']:hover {
+	cursor: pointer;
+	background: #28688d;
+}
+.loginForm input[type='email'],
+input[type='password'] {
+	margin: 0 0 0 20px;
+}
+
+.loginForm label {
+	text-align: right;
+}
+.rule {
+	width: 300px;
+}
