@@ -3,6 +3,7 @@ import { auth } from '../firebase';
 import axios from 'axios';
 
 const AuthContext = React.createContext();
+const BASE_URL = 'http://localhost:5000';
 
 export function useAuth() {
 	return useContext(AuthContext);
@@ -13,7 +14,6 @@ export function AuthProvider({ children }) {
 	const [loading, setLoading] = useState(true);
 
 	function signup(email, password, displayName) {
-		const BASE_URL = 'http://localhost:5000';
 		return auth
 			.createUserWithEmailAndPassword(email, password)
 			.then((result) => {
@@ -41,8 +41,14 @@ export function AuthProvider({ children }) {
 		return auth.sendPasswordResetEmail(email);
 	}
 
-	function deleteAccount() {
-		return auth.currentUser.delete();
+	async function deleteAccount() {
+		const userId = currentUser.uid;
+		try {
+			await axios.delete(`${BASE_URL}/user/${userId}`);
+			return auth.currentUser.delete();
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	useEffect(() => {
