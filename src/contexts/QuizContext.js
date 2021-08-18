@@ -47,7 +47,16 @@ export function QuizProvider({ children }) {
 	}
 
 	async function fetchRoomData(roomId) {
-		// fetch room and quiz data and update state
+		const roomFetch = await axios.get(`${BASE_URL}/rooms/${roomId}`);
+		const currentRoom = roomFetch.data;
+		setRoomData(currentRoom);
+		console.log(currentRoom);
+		//for now just fetch the first quiz
+		const quizId = currentRoom.quizzes[0];
+		const quizFetch = await axios.get(`${BASE_URL}/quiz/${quizId}`);
+		const currentQuiz = quizFetch.data;
+		setQuizData(currentQuiz);
+		console.log(currentQuiz);
 	}
 
 	function joinRoom(roomData) {
