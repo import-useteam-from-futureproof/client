@@ -46,10 +46,14 @@ export function QuizProvider({ children }) {
 		}
 	}
 
+	async function fetchRoomData(roomId) {
+		// fetch room and quiz data and update state
+	}
+
 	function joinRoom(roomData) {
 		setRoomData(roomData);
 	}
 
-	const value = { createRoom, createQuiz, roomData, quizData, joinRoom };
+	const value = { createRoom, createQuiz, roomData, quizData, joinRoom, fetchRoomData };
 	return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
 }
