@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChatLog } from '../index';
+import { useQuiz } from '../../contexts/QuizContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 import { io } from 'socket.io-client';
 
@@ -12,6 +14,9 @@ const Chatroom = () => {
 
 	const [chatInput, setChatInput] = useState('');
 
+	const { roomData } = useQuiz();
+	const { currentUser } = useAuth();
+
 	useEffect(() => {
 		socket.on('newMessage', (message) => {
 			updateChatHistory(message);
@@ -19,7 +24,7 @@ const Chatroom = () => {
 	}, []);
 
 	// TODO - Get the roomName
-	socket.emit('joinRoom', 'tbc');
+	socket.emit('joinRoom', roomData._id);
 
 	const updateChatInput = (e) => {
 		setChatInput(e.target.value);
@@ -30,8 +35,8 @@ const Chatroom = () => {
 		e.preventDefault();
 		socket.emit('newMessage', {
 			message: chatInput,
-			roomName: 'tbc',
-			username: 'user',
+			roomName: roomData._id,
+			username: currentUser.displayName,
 		});
 		updateChatHistory({ username: 'You', message: chatInput });
 		setChatInput('');
