@@ -4,7 +4,7 @@ import { ChatLog } from '../index';
 import { io } from 'socket.io-client';
 // this is where out socket is deployed.
 // TODO update the the live socket
-const socket = io('http://localhost:3000');
+const socket = io('https://pursuit-of-trivia.herokuapp.com/');
 
 const Chatroom = () => {
 	const [chatHistory, setChatHistory] = useState([
@@ -34,7 +34,7 @@ const Chatroom = () => {
 			roomName: 'tbc',
 			username: 'user',
 		});
-		updateChatHistory({ message: chatInput });
+		updateChatHistory({ username: 'You', message: chatInput });
 		setChatInput('');
 	};
 
