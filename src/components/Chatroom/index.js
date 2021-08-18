@@ -18,13 +18,11 @@ const Chatroom = () => {
 	const { currentUser } = useAuth();
 
 	useEffect(() => {
+		socket.emit('joinRoom', { roomName: roomData.id, username: currentUser.displayName });
 		socket.on('newMessage', (message) => {
 			updateChatHistory(message);
 		});
 	}, []);
-
-	// TODO - Get the roomName
-	socket.emit('joinRoom', roomData._id);
 
 	const updateChatInput = (e) => {
 		setChatInput(e.target.value);
@@ -35,7 +33,7 @@ const Chatroom = () => {
 		e.preventDefault();
 		socket.emit('newMessage', {
 			message: chatInput,
-			roomName: roomData._id,
+			roomName: roomData.id,
 			username: currentUser.displayName,
 		});
 		updateChatHistory({ username: 'You', message: chatInput });
