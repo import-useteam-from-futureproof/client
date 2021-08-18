@@ -55,47 +55,50 @@ export default ({ onSubmit }) => {
 	};
 
 	return (
-		<form className={styles.gameDisplay} onSubmit={handleFormSubmit}>
-			{loading ? (
-				<p>Loading...</p>
-			) : (
-				<>
-					<label htmlFor="category">Category</label>
-					<select
-						id="category"
-						name="category"
-						onChange={handleSelectChange}
-						required
-						value={formData.category}
-					>
-						{renderCategoryOptions()}
-					</select>
-					<label htmlFor="difficulty">difficulty</label>
-					<select
-						onChange={handleSelectChange}
-						value={formData.difficulty}
-						id="difficulty"
-						name="difficulty"
-						required
-					>
-						<option value="easy">Easy</option>
-						<option value="medium">Medium</option>
-						<option value="hard">Hard</option>
-					</select>
-					<label htmlFor="numberOfQuestions">Number of questions</label>
-					<input
-						onChange={handleNumQuestionsChange}
-						value={formData.numberOfQuestions}
-						id="numberOfQuestions"
-						name="numberOfQuestions"
-						type="number"
-						min={1}
-						max={20}
-						required
-					/>
-					<input type="submit" />{' '}
-				</>
-			)}
-		</form>
+		<>
+			<h1 className={styles.formHeading}>Create a Quiz</h1>
+			<form className={styles.gameDisplay} onSubmit={handleFormSubmit}>
+				{loading ? (
+					<p>Loading...</p>
+				) : (
+					<>
+						<label htmlFor="category">Category</label>
+						<select
+							id="category"
+							name="category"
+							onChange={handleSelectChange}
+							required
+							value={formData.category}
+						>
+							{renderCategoryOptions()}
+						</select>
+						<label htmlFor="difficulty">Difficulty</label>
+						<select
+							onChange={handleSelectChange}
+							value={formData.difficulty}
+							id="difficulty"
+							name="difficulty"
+							required
+						>
+							<option value="easy">Easy</option>
+							<option value="medium">Medium</option>
+							<option value="hard">Hard</option>
+						</select>
+						<label htmlFor="numberOfQuestions">Number of questions</label>
+						<input
+							onChange={handleNumQuestionsChange}
+							value={formData.numberOfQuestions}
+							id="numberOfQuestions"
+							name="numberOfQuestions"
+							type="number"
+							min={1}
+							max={20}
+							required
+						/>
+						<input type="submit" />{' '}
+					</>
+				)}
+			</form>
+		</>
 	);
 };

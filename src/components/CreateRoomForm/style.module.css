@@ -10,12 +10,7 @@
 
 	text-align: center;
 }
-/* .gameDisplay input,
-label {
-	width: 250px;
-	height: 30px;
-	margin: 10px 0;
-} */
+
 .gameDisplay input[type='text'],
 input[type='number'] {
 	width: 250px;
@@ -46,4 +41,16 @@ input[type='number'] {
 
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
+}
+
+.gameDisplay input[type='submit']:hover {
+	cursor: pointer;
+
+	background: #29678b;
+}
+.formHeading {
+	text-align: center;
+	color: #29678b;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
 }
