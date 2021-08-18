@@ -2,18 +2,38 @@
 	width: 100%;
 	background-color: #1d506d;
 
-	padding: 30px;
-	display: flex;
-	justify-content: center;
+	color: white;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	column-gap: 60px;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+
+	margin: 0;
 }
 .aboutMeSection * {
-	margin: 30px;
+	margin: 30px 0 15px 0;
+}
+.aboutMeSection h3 {
+	margin: 15px 0;
+}
+.aboutMeSection h2 {
+	font-size: 35px;
+	margin: 30px 15px 15px 0;
 }
 
 .images {
 	height: 300px;
 }
 
-/* .aboutMeSectionText {
-	padding-left: 30px;
-} */
+.imageContainer {
+	background: url('https://cdn.woorise.com/wp-content/uploads/2020/09/quiz-examples-ideas.png');
+	background-position: center;
+	height: 300px;
+	width: 100%;
+
+	margin: 30px 0;
+}

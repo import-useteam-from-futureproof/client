@@ -18,9 +18,10 @@ const SignUpLogin = () => {
 
 	return (
 		<section className={styles.loginContainer}>
-			<Header />
 			<LoginForm />
-			<button onClick={showModal}>Sign Up</button>
+			<button className={styles.signUpButton} onClick={showModal}>
+				Sign Up
+			</button>
 			<SignUpModal closeModal={closeModal} shown={showSignupModal} />
 		</section>
 	);

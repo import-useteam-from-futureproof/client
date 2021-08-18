@@ -4,3 +4,27 @@
 body {
 	margin: 0;
 }
+input [type='text'],
+[type='password'],
+[type='email'] {
+	width: 250px;
+	height: 30px;
+
+	border-radius: 50px;
+	padding-left: 15px;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+
+	color: #1d506d;
+
+	text-transform: uppercase;
+}
+label {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 20px;
+
+	color: #1d506d;
+}

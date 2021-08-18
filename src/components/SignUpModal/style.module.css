@@ -6,10 +6,63 @@
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	background-color: rgba(255, 255, 255, 0.801);
+	background-color: rgba(255, 255, 255, 0.904);
 	z-index: 100;
 }
 .registerAccountModal * {
 	display: block;
 	margin: 0;
+}
+.registerAccountModal input[type='text'] {
+	width: 250px;
+	height: 30px;
+
+	border-radius: 50px;
+	padding-left: 15px;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+
+	color: #1d506d;
+
+	text-transform: uppercase;
+}
+.registerAccountModal input {
+	margin: 5px 0 15px 0;
+	text-align: center;
+	padding-left: unset;
+}
+.registerAccountModal label {
+	text-align: center;
+}
+
+.registerAccountModal input[type='submit'] {
+	margin: 25px auto;
+	display: block;
+	border-radius: 50px;
+	border-style: none;
+
+	width: 125px;
+	height: 30px;
+
+	background: #1d506d;
+	color: white;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+
+.registerAccountModal input[type='button'] {
+	display: block;
+	margin: 0 auto;
+	background: none;
+	border-style: none;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+}
+.registerAccountModal input[type='button']:hover {
+	cursor: pointer;
+	color: #28688d;
 }

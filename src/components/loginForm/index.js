@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import styles from './style.module.css';
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('');
@@ -24,29 +25,32 @@ const LoginForm = () => {
 	};
 
 	return (
-		<form aria-label="login form" onSubmit={handleFormSubmit}>
-			<label>
-				Email:{' '}
-				<input
-					onChange={handleEmailInputChange}
-					value={email}
-					id="loginEmail"
-					type="email"
-					placeholder="email"
-				/>
-			</label>
-			<label>
-				Password:{' '}
-				<input
-					onChange={handlePasswordInputChange}
-					value={password}
-					id="loginPassword"
-					type="password"
-					placeholder="password"
-				/>
-			</label>
-			<input type="submit" value="log in" />
-		</form>
+		<>
+			<form className={styles.loginForm} aria-label="login form" onSubmit={handleFormSubmit}>
+				<label className={styles.inputFields}>
+					E-mail:{' '}
+					<input
+						onChange={handleEmailInputChange}
+						value={email}
+						id="loginEmail"
+						type="email"
+						placeholder="email"
+					/>
+				</label>
+				<label className={styles.inputFields}>
+					Password:{' '}
+					<input
+						onChange={handlePasswordInputChange}
+						value={password}
+						id="loginPassword"
+						type="password"
+						placeholder="password"
+					/>
+				</label>
+				<input className={styles.loginButton} type="submit" value="log in" />
+			</form>
+			<hr className={styles.rule} />
+		</>
 	);
 };
 
