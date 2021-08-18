@@ -1,0 +1,49 @@
+nav {
+	width: 100%;
+	background-color: rgb(226, 226, 226);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 30px;
+}
+
+nav img {
+	height: 45px;
+	align-self: flex-start;
+}
+nav img:hover {
+	cursor: pointer;
+}
+
+nav ul {
+	display: inline;
+	padding: 0;
+}
+nav ul li {
+	display: inline;
+	margin: 0 15px;
+
+	text-decoration: none;
+}
+nav ul li a {
+	text-decoration: none;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	color: #28688d;
+}
+nav button {
+	background: none;
+	border-style: none;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+
+	color: #28688d;
+}
+nav button:hover {
+	cursor: pointer;
+	color: #357ea8;
+}
+nav ul li a:hover {
+	color: #357ea8;
+}

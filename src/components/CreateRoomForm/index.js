@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './style.module.css';
 
 export default ({ onSubmit }) => {
 	const [formData, setFormData] = useState({
@@ -40,47 +41,48 @@ export default ({ onSubmit }) => {
 	};
 
 	return (
-		<form onSubmit={handleFormSubmit}>
-			<label htmlFor="roomName">Room Name</label>
-			<input
-				onChange={handleTextInputChange}
-				value={formData.roomName}
-				id="roomName"
-				name="roomName"
-				type="text"
-				required
-			/>
+		<>
+			<h2 className={styles.formHeading}>Create a Quiz</h2>
+			<form className={styles.gameDisplay} onSubmit={handleFormSubmit}>
+				<label htmlFor="roomName">Room Name</label>
+				<input
+					onChange={handleTextInputChange}
+					value={formData.roomName}
+					id="roomName"
+					name="roomName"
+					type="text"
+					required
+				/>
 
-			<label htmlFor="maxPlayers">Number of players</label>
-			<input
-				onChange={handleMaxPlayersChange}
-				value={formData.maxPlayers}
-				id="maxPlayers"
-				name="maxPlayers"
-				type="number"
-				min={1}
-				max={10}
-				required
-			/>
+				<label htmlFor="maxPlayers">Number of players</label>
+				<input
+					onChange={handleMaxPlayersChange}
+					value={formData.maxPlayers}
+					id="maxPlayers"
+					name="maxPlayers"
+					type="number"
+					min={1}
+					max={10}
+					required
+				/>
+				{formData.public ? null : (
+					<>
+						<label htmlFor="password">Room Password</label>
+						<input
+							onChange={handleTextInputChange}
+							value={formData.password}
+							id="password"
+							name="password"
+							type="text"
+							required
+						/>
+					</>
+				)}
+				<input type="submit" />
 
-			<input type="submit" />
-
-			<label htmlFor="public">Private</label>
-			<input onChange={handleCheckboxChange} id="public" name="public" type="checkbox" />
-
-			{formData.public ? null : (
-				<>
-					<label htmlFor="password">Room Password</label>
-					<input
-						onChange={handleTextInputChange}
-						value={formData.password}
-						id="password"
-						name="password"
-						type="text"
-						required
-					/>
-				</>
-			)}
-		</form>
+				<label htmlFor="public">Private</label>
+				<input onChange={handleCheckboxChange} id="public" name="public" type="checkbox" />
+			</form>
+		</>
 	);
 };

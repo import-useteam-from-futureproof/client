@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
 
+import styles from './style.module.css';
+
 export default () => {
 	const { logout } = useAuth();
 	const { push } = useHistory();
@@ -18,6 +20,9 @@ export default () => {
 
 	return (
 		<nav>
+			<a href="#">
+				<img src="../../assets/logo.svg"></img>
+			</a>
 			<ul>
 				<li>
 					<NavLink exact to="/lobby">
