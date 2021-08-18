@@ -6,10 +6,14 @@ const QuizController = () => {
 		console.log(answers);
 	};
 
+	const handleHostStart = () => {
+		console.log('Quiz Started');
+	};
+
 	return (
 		<>
 			<Game onGameEnd={handleGameEnd} />
-			<LobbyWaitingRoom />
+			<LobbyWaitingRoom hostStartedQuiz={handleHostStart} />
 			<Results />
 		</>
 	);

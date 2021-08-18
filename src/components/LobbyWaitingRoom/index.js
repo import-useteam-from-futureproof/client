@@ -2,20 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useQuiz } from '../../contexts/QuizContext';
 import { useAuth } from '../../contexts/AuthContext';
 
-const LobbyWaitingRoom = () => {
+const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 	const [host, setHostBool] = useState(false);
 	const { roomData } = useQuiz();
 	const { quizData } = useQuiz();
 	const { currentUser } = useAuth();
 
-	useEffect(() => {
+	useEffect(async () => {
+		// const { data } = await axios.get(`${API_URL}/rooms`);
+		// console.log(data);
+		// console.log(currentUser);
 		if (roomData.owner === currentUser.uid) {
 			setHostBool(true);
 		}
 		console.log(quizData);
 	}, []);
 
-	const quizStart = () => {};
+	const quizStart = () => {
+		hostStartedQuiz();
+	};
 
 	const renderHostPage = () => {
 		return (
