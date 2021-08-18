@@ -6,13 +6,31 @@ export default ({ onGameEnd }) => {
 	const { quizData } = useQuiz();
 	const { questions } = quizData;
 	const [userAnswers, setUserAnswers] = useState([]);
-	const [questionNumber, setQuestionNumnber] = useState(0);
+	const [questionNumber, setQuestionNumber] = useState(0);
 	const [timerStart, setTimerStart] = useState(Date.now());
 	const [remainingTime, setRemainingTime] = useState(60);
+	const [currentAnswers, setCurrentAnswers] = useState([]);
+
+	const setAnswers = () => {
+		const answers = [
+			...questions[questionNumber].incorrect_answers,
+			questions[questionNumber].correct_answer,
+		];
+		function shuffleAnswers() {
+			const length = answers.length;
+			for (let i = 0; i < length; i++) {
+				let random = Math.floor(Math.random() * length);
+				const stored = answers[i];
+				answers[i] = answers[random];
+				answers[random] = stored;
+			}
+		}
+		shuffleAnswers();
+		setCurrentAnswers(answers);
+	};
 
 	const handleAnswerClick = (e) => {
 		const answer = e.target.textContent;
-
 		setUserAnswers((prevState) => {
 			return [
 				...prevState,
@@ -38,11 +56,15 @@ export default ({ onGameEnd }) => {
 	};
 
 	useEffect(() => {
+		setAnswers();
+	}, [questionNumber]);
+
+	useEffect(() => {
 		const advanceGameState = () => {
 			if (userAnswers.length === questions.length) {
 				onGameEnd(userAnswers);
 			} else if (userAnswers.length === questionNumber + 1) {
-				setQuestionNumnber((prevNumber) => prevNumber + 1);
+				setQuestionNumber((prevNumber) => prevNumber + 1);
 				setTimerStart(Date.now());
 			}
 		};
@@ -80,10 +102,7 @@ export default ({ onGameEnd }) => {
 				time={remainingTime}
 				handleClick={handleAnswerClick}
 				question={questions[questionNumber].question}
-				answers={[
-					...questions[questionNumber].incorrect_answers,
-					questions[questionNumber].correct_answer,
-				]}
+				answers={currentAnswers}
 			/>
 		</section>
 	);

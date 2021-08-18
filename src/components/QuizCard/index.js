@@ -7,6 +7,7 @@ export default ({ answers, question, time, handleClick }) => {
 				{answer}
 			</button>
 		));
+
 	return (
 		<div>
 			<p>{question}</p>
