@@ -46,13 +46,10 @@ export function QuizProvider({ children }) {
 		}
 	}
 
-	// function room() {
-	// 	return roomData;
-	// }
+	function joinRoom(roomData) {
+		setRoomData(roomData);
+	}
 
-	// function quiz() {
-	// 	return quizData;
-	// }
-	const value = { createRoom, createQuiz, roomData, quizData };
+	const value = { createRoom, createQuiz, roomData, quizData, joinRoom };
 	return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
 }
