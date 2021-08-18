@@ -1,0 +1,8 @@
+.newQuizForm {
+	width: 100%;
+	height: 500px;
+
+	place-items: center;
+
+	border: 5px solid #c4c4c4;
+}

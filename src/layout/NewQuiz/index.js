@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useQuiz } from '../../contexts/QuizContext';
 import { CreateRoomForm, CreateQuizForm } from '../../components';
 import { useHistory } from 'react-router-dom';
+import styles from './style.module.css';
 
 export default () => {
 	const { createRoom, createQuiz, roomData } = useQuiz();
@@ -29,7 +30,7 @@ export default () => {
 	};
 
 	return (
-		<section>
+		<section className={styles.newQuizForm}>
 			{showRoomForm ? (
 				<CreateRoomForm onSubmit={handleCreateRoomSubmit} />
 			) : (

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import styles from './style.module.css';
+
 export default ({ onSubmit }) => {
 	const [categories, setCategories] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -53,7 +55,7 @@ export default ({ onSubmit }) => {
 	};
 
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<form className={styles.gameDisplay} onSubmit={handleFormSubmit}>
 			{loading ? (
 				<p>Loading...</p>
 			) : (

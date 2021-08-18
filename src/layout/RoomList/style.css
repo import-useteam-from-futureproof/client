@@ -1,32 +1,58 @@
 #roomList {
-	margin-left: 2%;
-	width: 50%;
-	border: 1px solid black;
+	width: 100%;
+	height: 100%;
+	background-color: #1d506d;
+	overflow: scroll;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
 }
 
 #roomList h1 {
 	text-align: center;
+	color: white;
 }
 
 .room {
-	border-top: 1px solid black;
+	border-top: 1px solid rgb(255, 255, 255);
+	height: 50px;
+	padding: 10px;
+
+	display: flex;
+	justify-content: space-between;
+	font-weight: 400;
+	font-size: 20px;
+}
+.room div {
+	display: flex;
+	align-content: center;
 }
 
 .room p,
 .room input,
 .formIcon {
-	display: inline-block;
-	margin-right: 2%;
+	color: white;
+	display: inline;
+	margin: 0 15px;
+}
+.room input {
+	color: black;
+	width: 60px;
+	border-radius: 40px;
+	border-style: none;
 }
 
+.room input:hover {
+	cursor: pointer;
+	background-color: rgb(158, 158, 158);
+	color: white;
+}
 #privateJoin {
 	display: none;
 }
 
 .formIcon {
-	width: 30px;
+	width: 25px;
 	height: 30px;
-	margin-top: 1.5%;
 }
 
 #error {

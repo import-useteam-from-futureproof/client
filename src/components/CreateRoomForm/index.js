@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './style.module.css';
 
 export default ({ onSubmit }) => {
 	const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ export default ({ onSubmit }) => {
 	};
 
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<form className={styles.gameDisplay} onSubmit={handleFormSubmit}>
 			<label htmlFor="roomName">Room Name</label>
 			<input
 				onChange={handleTextInputChange}
