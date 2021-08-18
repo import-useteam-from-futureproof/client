@@ -5,17 +5,14 @@ import { CreateRoomForm, CreateQuizForm } from '../../components';
 import { useHistory } from 'react-router-dom';
 
 export default () => {
-	const { createRoom, createQuiz } = useQuiz();
+	const { createRoom, createQuiz, room } = useQuiz();
 	const { push } = useHistory();
 	const { currentUser } = useAuth();
-	const [roomData, setRoomData] = useState({});
-	const [quizData, setQuizData] = useState({});
 	const [showRoomForm, setShowRoomForm] = useState(true);
 
 	const handleCreateRoomSubmit = async (roomFormData) => {
 		try {
-			setRoomData(roomFormData);
-			await createRoom({ ...roomData, ownerId: currentUser.uid });
+			await createRoom({ ...roomFormData, ownerId: currentUser.uid });
 			setShowRoomForm(false);
 		} catch (err) {
 			console.error(err);
@@ -24,9 +21,8 @@ export default () => {
 
 	const handleCreateQuizSubmit = async (quizFormData) => {
 		try {
-			setQuizData(quizFormData);
-			await createQuiz(quizData);
-			push(`/quiz/${roomData.room_id}`);
+			await createQuiz(quizFormData);
+			push(`/quiz/${room._id}`);
 		} catch (err) {
 			console.error(err);
 		}

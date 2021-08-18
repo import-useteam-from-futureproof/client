@@ -30,11 +30,11 @@ export function QuizProvider({ children }) {
 
 	async function createQuiz(newQuizData) {
 		try {
-			if (!roomData.room_id) {
+			if (!roomData._id) {
 				throw new Error('You must create a room before you can create a quiz');
 			}
 			const { data } = await axios.post(`${BASE_URL}/quiz`, {
-				room_id: roomData.room_id,
+				room_id: roomData._id,
 				category: newQuizData.category,
 				difficulty: newQuizData.difficulty,
 				num_questions: newQuizData.numberOfQuestions,
