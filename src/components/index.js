@@ -4,7 +4,7 @@ export { default as DeleteAccountModal } from './DeleteAccountModal';
 export { default as SignUpModal } from './SignUpModal';
 export { default as NavBar } from './NavBar';
 export { default as About } from './About';
-export { default as Review } from './Review';
+export { default as Reviews } from './Reviews';
 export { default as RedirectUser } from './RedirectUser';
 export { default as Footer } from './Footer';
 export { default as ErrorModal } from './ErrorModal';

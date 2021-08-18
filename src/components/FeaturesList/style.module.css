@@ -1,6 +1,6 @@
 .featuresContainer {
 	width: 100%;
-	padding: 60px;
+	padding: 60px 0 0 60px;
 	display: flex;
 	justify-content: center;
 
@@ -13,7 +13,7 @@
 	font-size: 18px;
 }
 .featuresContainer article {
-	margin: 0 60px;
+	margin: 0 100px;
 }
 .featuresImages {
 	width: 120px;
