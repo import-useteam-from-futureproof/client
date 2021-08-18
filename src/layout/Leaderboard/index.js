@@ -6,7 +6,7 @@ export default () => {
 	const [isError, setIsError] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const BASE_URL = 'http://localhost:5000';
+	const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 	useEffect(() => {
 		const fetchLeaderboardData = async () => {
@@ -27,10 +27,10 @@ export default () => {
 	}, []);
 
 	const renderLeaderboardData = () =>
-		leaderboardData.map(({ username, score }, i) => (
-			<li>
+		leaderboardData.map(({ username, high_score }, i) => (
+			<li key={i}>
 				<span>{username}</span>
-				<span>{score}</span>
+				<span>{high_score}</span>
 				{i === leaderboardData.length - 1 ? null : <hr />}
 			</li>
 		));

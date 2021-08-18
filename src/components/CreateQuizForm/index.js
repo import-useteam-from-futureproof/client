@@ -71,7 +71,7 @@ export default ({ onSubmit }) => {
 					<label htmlFor="difficulty">difficulty</label>
 					<select
 						onChange={handleSelectChange}
-						value={formData.numberOfQuestions}
+						value={formData.difficulty}
 						id="difficulty"
 						name="difficulty"
 						required
