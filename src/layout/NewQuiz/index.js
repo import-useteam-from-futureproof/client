@@ -5,7 +5,7 @@ import { CreateRoomForm, CreateQuizForm } from '../../components';
 import { useHistory } from 'react-router-dom';
 
 export default () => {
-	const { createRoom, createQuiz, room } = useQuiz();
+	const { createRoom, createQuiz, roomData } = useQuiz();
 	const { push } = useHistory();
 	const { currentUser } = useAuth();
 	const [showRoomForm, setShowRoomForm] = useState(true);
@@ -22,7 +22,7 @@ export default () => {
 	const handleCreateQuizSubmit = async (quizFormData) => {
 		try {
 			await createQuiz(quizFormData);
-			push(`/quiz/${room._id}`);
+			push(`/quiz/${roomData._id}`);
 		} catch (err) {
 			console.error(err);
 		}
