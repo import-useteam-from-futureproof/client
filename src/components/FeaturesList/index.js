@@ -19,4 +19,5 @@ const FeaturesList = () => {
 		</section>
 	);
 };
+
 export default FeaturesList;

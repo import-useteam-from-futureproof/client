@@ -18,8 +18,6 @@ input [type='text'],
 	font-size: 15px;
 
 	color: #1d506d;
-
-	text-transform: uppercase;
 }
 label {
 	font-family: 'Open Sans', sans-serif;
