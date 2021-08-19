@@ -18,7 +18,7 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 		if (roomData.owner === currentUser.uid) {
 			setHostBool(true);
 		}
-	}, [quizData]);
+	}, [quizData, roomData]);
 
 	const quizStart = (e) => {
 		e.preventDefault();

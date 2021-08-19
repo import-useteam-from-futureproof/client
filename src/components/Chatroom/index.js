@@ -4,11 +4,11 @@ import { useQuiz } from '../../contexts/QuizContext';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from './style.module.css';
 
-import { io } from 'socket.io-client';
+const Chatroom = ({ socket }) => {
+	const [chatHistory, setChatHistory] = useState([
+		{ username: 'chatbot', message: 'Welcome to the chatroom' },
+	]);
 
-const socket = io('https://pursuit-of-trivia.herokuapp.com/');
-
-const Chatroom = () => {
 	const [chatInput, setChatInput] = useState('');
 
 	const { roomData } = useQuiz();
@@ -29,8 +29,10 @@ const Chatroom = () => {
 	}, [chatHistory]);
 
 	useEffect(() => {
-		socket.emit('joinRoom', { roomName: roomData.id, username: currentUser.displayName });
 		socket.on('newMessage', (message) => {
+			if (message.username === currentUser.displayName) {
+				message.username = 'You';
+			}
 			updateChatHistory(message);
 		});
 	}, []);
@@ -46,7 +48,6 @@ const Chatroom = () => {
 			roomName: roomData.id,
 			username: currentUser.displayName,
 		});
-		updateChatHistory({ username: 'You', message: chatInput });
 		setChatInput('');
 	};
 
