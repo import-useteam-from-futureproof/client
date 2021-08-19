@@ -40,3 +40,8 @@
 .warning {
 	color: red;
 }
+
+.errorDisplay {
+	text-align: center;
+	color: tomato;
+}
