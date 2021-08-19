@@ -16,8 +16,8 @@ export default () => {
 			<NavBar />
 			<main className={styles.lobbyContainer}>
 				<h1 className={styles.welcomeHeader}>Let's play</h1>
-				<Chatroom />;
-				<QuizController />;
+				<Chatroom />
+				<QuizController />
 			</main>
 		</>
 	);
