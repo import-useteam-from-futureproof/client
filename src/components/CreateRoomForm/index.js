@@ -12,7 +12,7 @@ export default ({ onSubmit }) => {
 	const [shown, setShown] = useState(false);
 
 	const hiddenStyle = {
-		transition: '2s',
+		transition: '1s',
 		maxHeight: shown ? '100px' : '0px',
 
 		pointerEvents: shown ? 'all' : 'none',
@@ -78,9 +78,7 @@ export default ({ onSubmit }) => {
 				/>
 
 				<div style={hiddenStyle}>
-					<label style={hiddenStyle} htmlFor="password">
-						Room Password
-					</label>
+					<label htmlFor="password">Room Password</label>
 				</div>
 				<div style={hiddenStyle}>
 					<input
@@ -90,7 +88,6 @@ export default ({ onSubmit }) => {
 						name="password"
 						type="text"
 						required
-						style={hiddenStyle}
 					/>
 				</div>
 				<input type="submit" />
