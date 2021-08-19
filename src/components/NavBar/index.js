@@ -21,7 +21,7 @@ export default () => {
 	return (
 		<nav>
 			<a href="#">
-				<img src="../../assets/logo.svg"></img>
+				<img src="https://i.imgur.com/OM3ye6t.png"></img>
 			</a>
 			<ul>
 				<li>
