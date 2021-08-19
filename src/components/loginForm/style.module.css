@@ -37,3 +37,7 @@ input[type='password'] {
 .rule {
 	width: 300px;
 }
+.errorDisplay {
+	text-align: center;
+	color: tomato;
+}
