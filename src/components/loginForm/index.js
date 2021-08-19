@@ -20,10 +20,8 @@ const LoginForm = () => {
 		try {
 			e.preventDefault();
 			const response = await login(email, password);
-			console.log(response);
 		} catch (err) {
 			renderErrors(err);
-			console.log(err);
 		}
 	};
 
