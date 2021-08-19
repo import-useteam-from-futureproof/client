@@ -55,7 +55,7 @@ const config = {
 						loader: 'url-loader',
 						options: {
 							limit: 10000,
-							name: ROOT_DIRECTORY + './assets', //Path will be assets or image path
+							name: ROOT_DIRECTORY + '/assets', //Path will be assets or image path
 						},
 					},
 				],
