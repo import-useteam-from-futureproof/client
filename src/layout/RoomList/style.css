@@ -14,7 +14,7 @@
 
 .room {
 	border-top: 3px solid rgb(190, 190, 190);
-	height: 50px;
+	height: auto;
 	padding: 10px;
 
 	display: flex;
@@ -37,6 +37,7 @@
 .room input {
 	color: black;
 	width: 60px;
+	height: 30px;
 	border-radius: 40px;
 	border-style: none;
 }
