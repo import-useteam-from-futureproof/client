@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChatLog } from '../index';
 import { useQuiz } from '../../contexts/QuizContext';
 import { useAuth } from '../../contexts/AuthContext';
+import styles from './style.module.css';
 
 import { io } from 'socket.io-client';
 
@@ -49,7 +50,7 @@ const Chatroom = () => {
 	};
 
 	return (
-		<section>
+		<section className={styles.chatroomContainer}>
 			<ul>
 				<ChatLog chatHistory={chatHistory} />
 			</ul>
