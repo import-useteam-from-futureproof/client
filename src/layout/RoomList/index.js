@@ -19,6 +19,7 @@ export default () => {
 	useEffect(async () => {
 		try {
 			const { data } = await axios.get(`${API_URL}/rooms`);
+			data.rooms.reverse();
 			setRooms(data.rooms);
 		} catch (err) {
 			console.log(err);
@@ -68,8 +69,7 @@ export default () => {
 
 	const renderRooms = () => {
 		return rooms.map((room, i) => {
-			let privacyIcon =
-				'https://cdn.iconscout.com/icon/premium/png-512-thumb/lock-1967458-1668608.png';
+			let privacyIcon = '../../assets/lock-icon.svg';
 			let privacy = 'Private';
 			let currentVisitors = 0;
 			let passcode = '';
@@ -80,8 +80,7 @@ export default () => {
 				passcode = room.entry_pass;
 			}
 			if (room.public_room) {
-				privacyIcon =
-					'https://mpng.subpng.com/20180410/bvw/kisspng-computer-icons-globe-world-clip-art-globe-5acd31f76797c0.3831539515233971114243.jpg';
+				privacyIcon = '../../assets/globe-icon.svg';
 				privacy = 'Public';
 			}
 			return (
@@ -92,12 +91,16 @@ export default () => {
 						}}
 						className="room"
 					>
-						<p>{room.name}</p>
-						<img className="formIcon" src={privacyIcon} id={privacy}></img>
-						<p>
-							{currentVisitors}/{room.max_room_size}
-						</p>
-						<input type="submit" value="Join"></input>
+						<div>
+							<p>{room.name}</p>
+							<img className="formIcon" src={privacyIcon} id={privacy}></img>
+						</div>
+						<div>
+							<p>
+								{currentVisitors}/{room.max_room_size}
+							</p>
+							<input type="submit" value="Join"></input>
+						</div>
 					</form>
 					<form
 						onSubmit={(e) => {
