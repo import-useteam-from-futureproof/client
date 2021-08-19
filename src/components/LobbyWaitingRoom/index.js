@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useQuiz } from '../../contexts/QuizContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { useParams } from 'react-router-dom';
 import styles from './style.module.css';
 
-const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
+const LobbyWaitingRoom = ({ hostStartedQuiz, numPlayers }) => {
 	const [host, setHostBool] = useState(false);
 	const [loading, setLoading] = useState(true);
-	const [currentParticipants, setCurrentParticipants] = useState(0);
 	const { roomData } = useQuiz();
 	const { quizData } = useQuiz();
 	const { currentUser } = useAuth();
@@ -20,14 +20,6 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 			setHostBool(true);
 		}
 	}, [quizData, roomData]);
-
-	useEffect(() => {
-		console.log(roomData);
-		if (Object.keys(roomData).length !== 0) {
-			setCurrentParticipants(roomData.participants.length);
-		}
-		console.log(currentParticipants);
-	}, [roomData]);
 
 	const quizStart = (e) => {
 		e.preventDefault();
@@ -45,7 +37,7 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 				<h2>Category: {quizData.category}</h2>
 				<h2>Difficulty: {quizData.difficulty}</h2>
 				<h2>Number of questions: {quizData.questions.length}</h2>
-				<h2>Players in room: {currentParticipants}</h2>
+				<h2>Players in room: {numPlayers}</h2>
 				<input type="submit" value="Start the quiz!"></input>
 			</form>
 		);
@@ -58,6 +50,7 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 				<h2>Category: {quizData.category}</h2>
 				<h2>Difficulty: {quizData.difficulty}</h2>
 				<h2>Number of questions: {quizData.questions.length}</h2>
+				<h2>Players in room: {numPlayers}</h2>
 			</>
 		);
 	};

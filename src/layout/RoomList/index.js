@@ -32,8 +32,6 @@ export default () => {
 
 	const postData = async (room) => {
 		try {
-			const post = await axios.post(`${API_URL}/rooms/${room.id}/join/${userId}`);
-			quiz.joinRoom(room);
 			redirect(room.id);
 		} catch (err) {
 			console.log(err);
