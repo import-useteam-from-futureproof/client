@@ -10,36 +10,43 @@ const QuizController = ({ socket }) => {
 	const [players, setPlayers] = useState([]);
 
 	useEffect(() => {
-		setPlayers((prevState) => [...prevState, { roomId: id, userId: currentUser.uid, score: null }]);
+		setPlayers((prevState) => [
+			...prevState,
+			{ roomId: id, userId: currentUser.uid, score: null, username: currentUser.displayName },
+		]);
 
 		socket.on('joinRoom', (response) => {
-			if (response.userId === currentUser.uid) {
-				return;
-			}
-			console.log('joinRoom', response);
-			setPlayers((prevState) => [
-				...prevState,
-				{ roomId: response.userId, userId: response.uid, score: null },
-			]);
+			setPlayers((prevState) => {
+				if (
+					response.userId === currentUser.uid ||
+					!response.userId ||
+					prevState.some((player) => player.userId == response.userId)
+				) {
+					return prevState;
+				}
+				return [
+					...prevState,
+					{ roomId: id, userId: response.userId, score: null, username: response.username },
+				];
+			});
 		});
 
 		socket.on('advanceGame', (response) => {
 			setComponent(response.component);
 			setPlayers(response.players);
 		});
+
 		socket.on('userFinished', (playerResult) => {
 			setPlayers((prevState) => {
 				return prevState.map((player) =>
 					player.userId === playerResult.userId ? playerResult : player
 				);
 			});
-			setComponent('Results');
+			if (playerResult.userId === currentUser.uid) {
+				setComponent('Results');
+			}
 		});
 	}, []);
-
-	useEffect(() => {
-		console.log('players', players);
-	}, [players]);
 
 	const handleGameEnd = (answers) => {
 		const data = {
@@ -82,10 +89,3 @@ const QuizController = ({ socket }) => {
 };
 
 export default QuizController;
-
-// {
-// 	roomName: '611e2aa15de071597b99d864',
-// 	score: null,
-// 	userId: 'uhv4bZUTx5U4998zhsMWo6TWg503',
-// 	username: currentUser.displayName,
-// },
