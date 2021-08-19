@@ -45,20 +45,8 @@ const config = {
 				use: ['style-loader', 'css-loader'],
 			},
 			{
-				test: /\.(svg|jpg|gif|pdf)$/,
-				use: ['file-loader'],
-			},
-			{
-				test: /\.(gif|png)$/, //Customise according to your need
-				use: [
-					{
-						loader: ['url-loader'],
-						options: {
-							limit: 10000,
-							name: ROOT_DIRECTORY + '/assets', //Path will be assets or image path
-						},
-					},
-				],
+				test: /\.(jpe?g|png|gif|svg)$/,
+				use: ['url-loader'],
 			},
 		],
 	},
