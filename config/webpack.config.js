@@ -52,7 +52,7 @@ const config = {
 				test: /\.(gif|png)$/, //Customise according to your need
 				use: [
 					{
-						loader: 'url-loader',
+						loader: ['url-loader'],
 						options: {
 							limit: 10000,
 							name: ROOT_DIRECTORY + '/assets', //Path will be assets or image path
