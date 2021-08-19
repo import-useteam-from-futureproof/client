@@ -13,7 +13,6 @@ const QuizController = ({ socket }) => {
 	const { currentUser } = useAuth();
 	const [component, setComponent] = useState('WaitingRoom');
 	const [players, setPlayers] = useState([]);
-	const [numPlayers, setNumPlayers] = useState(1);
 	const { push } = useHistory();
 
 	useEffect(() => {
@@ -22,7 +21,24 @@ const QuizController = ({ socket }) => {
 			{ roomId: id, userId: currentUser.uid, score: null, username: currentUser.displayName },
 		]);
 
+		socket.on('joinRoom', (response) => {
+			setPlayers((prevState) => {
+				if (
+					response.userId === currentUser.uid ||
+					!response.userId ||
+					prevState.some((player) => player.userId == response.userId)
+				) {
+					return prevState;
+				}
+				return [
+					...prevState,
+					{ roomId: id, userId: response.userId, score: null, username: response.username },
+				];
+			});
+		});
+
 		socket.on('updatePlayers', (playerCount) => {
+			console.log(`socket: ${playerCount}`);
 			setNumPlayers(playerCount);
 		});
 
@@ -78,25 +94,6 @@ const QuizController = ({ socket }) => {
 		return callLeaveRoom;
 	}, []);
 
-	useEffect(() => {
-		socket.on('joinRoom', (response) => {
-			setPlayers((prevState) => {
-				if (
-					response.userId === currentUser.uid ||
-					!response.userId ||
-					prevState.some((player) => player.userId == response.userId)
-				) {
-					return prevState;
-				}
-				return [
-					...prevState,
-					{ roomId: id, userId: response.userId, score: null, username: response.username },
-				];
-			});
-			socket.emit('updatePlayers', { numPlayers: players.length, roomName: id });
-		});
-	}, [players]);
-
 	const handleGameEnd = (answers) => {
 		const data = {
 			score: answers.reduce((acc, curr) => {
@@ -124,7 +121,7 @@ const QuizController = ({ socket }) => {
 	const componentToLoad = () => {
 		switch (component) {
 			case 'WaitingRoom':
-				return <LobbyWaitingRoom hostStartedQuiz={handleHostStart} numPlayers={numPlayers} />;
+				return <LobbyWaitingRoom hostStartedQuiz={handleHostStart} />;
 			case 'Game':
 				return <Game onGameEnd={handleGameEnd} />;
 			case 'Results':
