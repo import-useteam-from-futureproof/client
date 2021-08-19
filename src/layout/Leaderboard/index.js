@@ -57,12 +57,14 @@ export default () => {
 				</p>
 			) : (
 				<table className={styles.leaderboard}>
-					<tr>
-						<th>Rank</th>
-						<th>Username</th>
-						<th>Score</th>
-					</tr>
-					{renderLeaderboardData()}
+					<thead>
+						<tr>
+							<th>Rank</th>
+							<th>Username</th>
+							<th>Score</th>
+						</tr>
+					</thead>
+					<tbody>{renderLeaderboardData()}</tbody>
 				</table>
 			)}
 		</section>

@@ -56,8 +56,8 @@ export default ({ onSubmit }) => {
 
 	return (
 		<>
-			<h1 className={styles.formHeading}>Create a Quiz</h1>
 			<form className={styles.gameDisplay} onSubmit={handleFormSubmit}>
+				<h1 className={styles.formHeading}>Create a Quiz</h1>
 				{loading ? (
 					<p>Loading...</p>
 				) : (
