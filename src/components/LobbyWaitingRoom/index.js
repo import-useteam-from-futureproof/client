@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuiz } from '../../contexts/QuizContext';
 import { useAuth } from '../../contexts/AuthContext';
+import styles from './style.module.css';
 
 const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 	const [host, setHostBool] = useState(false);
@@ -43,12 +44,12 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 
 	const renderParticipantPage = () => {
 		return (
-			<div>
+			<>
 				<h1>Waiting for the host to start the game..</h1>
 				<h2>Category: {quizData.category}</h2>
 				<h2>Difficulty: {quizData.difficulty}</h2>
 				<h2>Number of questions: {quizData.questions.length}</h2>
-			</div>
+			</>
 		);
 	};
 
