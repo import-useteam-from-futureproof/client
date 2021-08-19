@@ -12,7 +12,11 @@ export default () => {
 	const { fetchRoomData } = useQuiz();
 	const socket = io('https://pursuit-of-trivia.herokuapp.com/');
 	useEffect(() => {
-		socket.emit('joinRoom', { roomName: id, username: currentUser.displayName });
+		socket.emit('joinRoom', {
+			roomName: id,
+			username: currentUser.displayName,
+			userId: currentUser.uid,
+		});
 		fetchRoomData(id);
 	}, []);
 	return (
