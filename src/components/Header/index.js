@@ -4,6 +4,7 @@ import logo from '../../assets/logo.svg';
 
 const Header = () => {
 	return (
+		<section>
 			<img
 				aria-label="site logo"
 				className={styles.headerImage}
