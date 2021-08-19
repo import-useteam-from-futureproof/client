@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styles from './style.module.css';
 
 export default () => {
 	const [leaderboardData, setLeaderboardData] = useState([]);
@@ -26,18 +27,27 @@ export default () => {
 		fetchLeaderboardData();
 	}, []);
 
+	// const renderLeaderboardData = () =>
+	// 	leaderboardData.map(({ username, high_score }, i) => (
+	// 		<li key={i}>
+	// 			<span>{i + 1} </span>
+	// 			<span>{username} </span>
+	// 			<span>{high_score}</span>
+	// 			{i === leaderboardData.length - 1 ? null : <hr />}
+	// 		</li>
+	// 	));
+
 	const renderLeaderboardData = () =>
 		leaderboardData.map(({ username, high_score }, i) => (
-			<li key={i}>
-				<span>{i + 1} </span>
-				<span>{username} </span>
-				<span>{high_score}</span>
-				{i === leaderboardData.length - 1 ? null : <hr />}
-			</li>
+			<tr key={i}>
+				<td>{i + 1}</td>
+				<td>{username}</td>
+				<td>{high_score}</td>
+			</tr>
 		));
 
 	return (
-		<ul aria-label="leaderboard">
+		<section aria-label="leaderboard" className={styles.leaderboard}>
 			{isLoading ? (
 				'Loading...'
 			) : isError ? (
@@ -46,8 +56,15 @@ export default () => {
 					<br /> Please refresh or try again later.
 				</p>
 			) : (
-				renderLeaderboardData()
+				<table className={styles.leaderboard}>
+					<tr>
+						<th>Rank</th>
+						<th>Username</th>
+						<th>Score</th>
+					</tr>
+					{renderLeaderboardData()}
+				</table>
 			)}
-		</ul>
+		</section>
 	);
 };
