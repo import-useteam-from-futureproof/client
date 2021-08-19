@@ -65,3 +65,7 @@
 	cursor: pointer;
 	color: #28688d;
 }
+.errorDisplay {
+	text-align: center;
+	color: tomato;
+}
