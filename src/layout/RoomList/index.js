@@ -7,8 +7,8 @@ import axios from 'axios';
 import './style.css';
 export default () => {
 	const { currentUser } = useAuth();
-	const userId = currentUser.uid;
-	const username = currentUser.displayName;
+	const userId = currentUser ? currentUser.uid : '';
+	const username = currentUser ? currentUser.displayName : '';
 	const socketServer = 'https://pursuit-of-trivia.herokuapp.com/';
 	const API_URL = process.env.REACT_APP_BASE_URL;
 	const [rooms, setRooms] = useState([]);
