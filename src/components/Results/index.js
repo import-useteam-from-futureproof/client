@@ -16,9 +16,13 @@ export default function Results({ results, onQuizEnd }) {
 		if (roomData.owner === currentUser.uid) {
 			setHostBool(true);
 		}
-		console.log(roomData.owner);
-		console.log(currentUser.uid);
 	}, [quizData, roomData]);
+
+	useEffect(() => {
+		if (!results.some((result) => result.score === null)) {
+			setAllUsersComplete(true);
+		}
+	}, [results]);
 
 	useEffect(() => {
 		const canvas = canvasRef.current;
@@ -31,7 +35,7 @@ export default function Results({ results, onQuizEnd }) {
 				labels: players,
 				datasets: [
 					{
-						label: '# of Votes',
+						label: '# of Points',
 						data: scores,
 						backgroundColor: [
 							'rgba(255, 99, 132, 0.2)',
@@ -101,7 +105,7 @@ export default function Results({ results, onQuizEnd }) {
 		<section>
 			<h1>Results</h1>
 			<ul>{renderResults()}</ul>
-			{allUsersComplete ? <canvas width="400" height="400" ref={canvasRef}></canvas> : <></>}
+			{allUsersComplete ? <canvas ref={canvasRef}></canvas> : <></>}
 			{!hostBool ? (
 				<></>
 			) : (
