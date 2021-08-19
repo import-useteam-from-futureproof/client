@@ -5,8 +5,10 @@ import { useAuth } from '../../contexts/AuthContext';
 export default ({ isVisible, closeModal }) => {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [currentPassword, setCurrentPassword] = useState('');
+	const [error, setError] = useState('');
 
-	const { updateUsername } = useAuth();
+	const { currentUser, authenticateUser, updatePassword } = useAuth();
 
 	const handlePasswordInputChange = (e) => {
 		setPassword(e.target.value);
@@ -16,21 +18,46 @@ export default ({ isVisible, closeModal }) => {
 		setConfirmPassword(e.target.value);
 	};
 
+	const handleOriginalPasswordInputChange = (e) => {
+		setCurrentPassword(e.target.value);
+	};
+
 	const modalStyle = {
 		opacity: isVisible ? 1 : 0,
 		pointerEvents: isVisible ? 'all' : 'none',
 	};
 
-	const handleDeleteAcount = async () => {
+	const handleUpdatePassword = async () => {
 		try {
+			setError('');
 			if (password !== confirmPassword) {
-				alert('Passwords do not match');
+				handleError({ code: "passwords don't match" });
 			}
-			await updatePassword(password);
-			closeModal();
+			if (error === '') {
+				await authenticateUser(currentUser.email, currentPassword);
+				await updatePassword(password);
+				closeModal();
+			}
 		} catch (err) {
-			console.error(err);
+			handleError(err);
 		}
+	};
+
+	const handleError = (error) => {
+		let displayedError;
+		switch (error.code) {
+			case "passwords don't match":
+				displayedError = "Passwords don't match.";
+				break;
+			case 'auth/wrong-password':
+				displayedError = 'Current Password is incorrect';
+				break;
+			default:
+				displayedError = 'Change password error. Please try again.';
+				break;
+		}
+
+		setError(displayedError);
 	};
 
 	return (
@@ -43,13 +70,25 @@ export default ({ isVisible, closeModal }) => {
 				<br></br>
 				<form>
 					<label className={styles.inputFields}>
+						Current Password:{' '}
+						<input
+							onChange={handleOriginalPasswordInputChange}
+							value={currentPassword}
+							id="profileOriginalPassword"
+							type="password"
+							placeholder="current password"
+						/>
+					</label>
+					<br></br>
+					<br></br>
+					<label className={styles.inputFields}>
 						New Password:{' '}
 						<input
 							onChange={handlePasswordInputChange}
 							value={password}
 							id="profilePassword"
 							type="password"
-							placeholder="password"
+							placeholder="new password"
 						/>
 					</label>
 					<br></br>
@@ -58,14 +97,19 @@ export default ({ isVisible, closeModal }) => {
 						Confirm Password:{' '}
 						<input
 							onChange={handlePasswordConfirmInputChange}
-							value={password}
+							value={confirmPassword}
 							id="profileConfirmPassword"
 							type="password"
 							placeholder="confirm password"
 						/>
 					</label>
 				</form>
-				<button className={styles.button} onClick={handleDeleteAcount} aria-label="delete account">
+				<p className={styles.errorDisplay}>{error}</p>
+				<button
+					className={styles.button}
+					onClick={handleUpdatePassword}
+					aria-label="delete account"
+				>
 					Change Password
 				</button>
 			</div>

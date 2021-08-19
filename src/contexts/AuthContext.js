@@ -84,6 +84,12 @@ export function AuthProvider({ children }) {
 		return auth.currentUser.updatePassword(password);
 	}
 
+	function authenticateUser(email, password) {
+		const user = auth.currentUser;
+		const credential = auth.app.firebase_.auth.EmailAuthProvider.credential(email, password);
+		return user.reauthenticateWithCredential(credential);
+	}
+
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			setCurrentUser(user);
@@ -103,6 +109,7 @@ export function AuthProvider({ children }) {
 		updateAvatar,
 		updateUsername,
 		updatePassword,
+		authenticateUser,
 	};
 	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }

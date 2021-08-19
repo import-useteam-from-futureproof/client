@@ -45,3 +45,8 @@ input[id='profilePassword'],
 input[id='profileConfirmPassword'] {
 	float: right;
 }
+
+.errorDisplay {
+	text-align: center;
+	color: tomato;
+}
