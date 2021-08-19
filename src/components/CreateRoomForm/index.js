@@ -87,7 +87,7 @@ export default ({ onSubmit }) => {
 						id="password"
 						name="password"
 						type="text"
-						required
+						required={shown ? true : false}
 					/>
 				</div>
 				<input type="submit" />
