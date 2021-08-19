@@ -29,7 +29,8 @@ export default () => {
 	const renderLeaderboardData = () =>
 		leaderboardData.map(({ username, high_score }, i) => (
 			<li key={i}>
-				<span>{username}</span>
+				<span>{i + 1} </span>
+				<span>{username} </span>
 				<span>{high_score}</span>
 				{i === leaderboardData.length - 1 ? null : <hr />}
 			</li>
