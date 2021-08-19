@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useQuiz } from '../../contexts/QuizContext';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import styles from './style.module.css';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const QuizController = ({ socket }) => {
@@ -131,7 +132,7 @@ const QuizController = ({ socket }) => {
 		}
 	};
 
-	return <section>{componentToLoad()}</section>;
+	return <section className={styles.container}>{componentToLoad()}</section>;
 };
 
 export default QuizController;
