@@ -59,7 +59,7 @@ const Chatroom = () => {
 	};
 
 	return (
-		<section className={styles.chatroomContainer}>
+		<section aria-label="chat room" className={styles.chatroomContainer}>
 			<div>
 				<ul>
 					<ChatLog chatHistory={chatHistory} />

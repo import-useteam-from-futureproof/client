@@ -5,7 +5,7 @@ import styles from './style.module.css';
 
 const ChatLog = ({ chatHistory }) => {
 	return chatHistory.map((msg, i) => (
-		<li key={i} className={styles.newMessage}>
+		<li aria-label="list" key={i} className={styles.newMessage}>
 			<span>{msg.username}: </span>
 			{msg.message}
 		</li>

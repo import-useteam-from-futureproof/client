@@ -46,12 +46,12 @@ const QuizController = () => {
 	};
 
 	return (
-		<>
+		<section>
 			{/* <Game onGameEnd={handleGameEnd} />
 			<LobbyWaitingRoom hostStartedQuiz={handleHostStart} />
 			<Results /> */}
 			{componentToLoad()}
-		</>
+		</section>
 	);
 };
 

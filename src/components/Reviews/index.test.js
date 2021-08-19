@@ -5,20 +5,17 @@ describe('header', () => {
 	beforeEach(() => {
 		render(<Review />);
 	});
-	test('heading to be present', () => {
-		let heading = screen.getAllByRole('heading');
-		expect(heading).toHaveLength(1);
+	test('articles', () => {
+		let articles = screen.getAllByRole('article');
+		expect(articles).toHaveLength(2);
 	});
-	test('There is one article in the structure', () => {
-		let article = screen.getAllByRole('article');
-		expect(article).toHaveLength(1);
-	});
+
 	test('reviewer says reviewer', () => {
-		const review = screen.getByText('Reviewer');
-		expect(review).toBeInTheDocument();
+		const review = screen.getAllByText('Reviewer');
+		expect(review).toHaveLength(2);
 	});
-	test('reviewer says reviewer', () => {
-		const reviewBody = screen.getByLabelText('review-body');
-		expect(reviewBody).toBeInTheDocument();
+	test('We have two review Bodies', () => {
+		const reviewBody = screen.getAllByLabelText('review body');
+		expect(reviewBody).toHaveLength(2);
 	});
 });

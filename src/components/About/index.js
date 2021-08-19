@@ -3,7 +3,7 @@ import styles from './style.module.css';
 
 const About = () => {
 	return (
-		<section id="about" className={styles.aboutMeSection}>
+		<section aria-label="about me section" id="about" className={styles.aboutMeSection}>
 			<div className={styles.imageContainer}></div>
 
 			<section className={styles.aboutMeSectionText}>
