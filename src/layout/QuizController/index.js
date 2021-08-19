@@ -74,7 +74,11 @@ const QuizController = ({ socket }) => {
 		}
 	};
 
-	return <>{componentToLoad()}</>;
+	return (
+		<section>
+			{componentToLoad()}
+		</section>
+	);
 };
 
 export default QuizController;

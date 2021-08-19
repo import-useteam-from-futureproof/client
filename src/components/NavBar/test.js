@@ -2,7 +2,7 @@ import NavBar from '.';
 import { screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('Profile Page', () => {
+describe('Nav bar', () => {
 	beforeEach(() => {
 		render(<NavBar />, { wrapper: MemoryRouter });
 	});

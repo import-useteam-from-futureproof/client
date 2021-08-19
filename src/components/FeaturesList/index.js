@@ -3,7 +3,7 @@ import styles from './style.module.css';
 
 const FeaturesList = () => {
 	return (
-		<section className={styles.featuresContainer}>
+		<section aria-label="features section" className={styles.featuresContainer}>
 			<article>
 				<img className={styles.featuresImages} src="../../assets/leaderboard-icon.svg"></img>
 				<h3>Leaderboards</h3>

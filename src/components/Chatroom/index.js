@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { ChatLog } from '../index';
 import { useQuiz } from '../../contexts/QuizContext';
 import { useAuth } from '../../contexts/AuthContext';
+import styles from './style.module.css';
 
 const Chatroom = ({ socket }) => {
 	const [chatHistory, setChatHistory] = useState([
@@ -12,6 +13,20 @@ const Chatroom = ({ socket }) => {
 
 	const { roomData } = useQuiz();
 	const { currentUser } = useAuth();
+
+	const [chatHistory, setChatHistory] = useState([
+		{ username: 'chatbot', message: `Welcome to the chatroom` },
+	]);
+
+	const messagesEndRef = useRef(null);
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [chatHistory]);
 
 	useEffect(() => {
 		socket.on('newMessage', (message) => {
@@ -45,10 +60,13 @@ const Chatroom = ({ socket }) => {
 	};
 
 	return (
-		<section>
-			<ul>
-				<ChatLog chatHistory={chatHistory} />
-			</ul>
+		<section aria-label="chat room" className={styles.chatroomContainer}>
+			<div>
+				<ul>
+					<ChatLog chatHistory={chatHistory} />
+					<div ref={messagesEndRef}></div>
+				</ul>
+			</div>
 			<form onSubmit={sendMessage}>
 				<input type="text" onChange={updateChatInput} value={chatInput} />
 				<input type="submit" value="Send" />

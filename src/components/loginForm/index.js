@@ -5,6 +5,7 @@ import styles from './style.module.css';
 const LoginForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
 
 	const { login } = useAuth();
 
@@ -20,8 +21,25 @@ const LoginForm = () => {
 			e.preventDefault();
 			const response = await login(email, password);
 		} catch (err) {
-			console.log(err);
+			renderErrors(err);
 		}
+	};
+
+	const renderErrors = (error) => {
+		let displayedError;
+		switch (error.code) {
+			case 'auth/user-not-found':
+				displayedError = 'User not found.';
+				break;
+			case 'auth/wrong-password':
+				displayedError = 'Password Incorrect.';
+				break;
+
+			default:
+				displayedError = 'Login error. Please try again.';
+				break;
+		}
+		setError(displayedError);
 	};
 
 	return (
@@ -48,6 +66,7 @@ const LoginForm = () => {
 					/>
 				</label>
 				<input className={styles.loginButton} type="submit" value="log in" />
+				<p className={styles.errorDisplay}>{error}</p>
 			</form>
 			<hr className={styles.rule} />
 		</>

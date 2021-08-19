@@ -18,6 +18,8 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 		username: '',
 	});
 
+	const [error, setError] = useState('');
+
 	const handleInputChange = (e) => {
 		setFormData((prevState) => {
 			return { ...prevState, [e.target.id]: e.target.value };
@@ -29,14 +31,37 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 			e.preventDefault();
 			if (formData.password !== formData.passwordConfirm) {
 				console.log("passwords don't match");
+				handleError({ code: "passwords don't match" });
 				return;
 			}
 			const firebaseResponse = await signup(formData.email, formData.password, formData.username);
+			console.log(firebaseResponse);
 			const firebaseLoginResponse = await login(formData.email, formData.password);
 		} catch (error) {
+			handleError(error);
 			console.error(error);
 			throwError(error.message);
 		}
+	};
+
+	const handleError = (error) => {
+		let displayedError;
+		switch (error.code) {
+			case 'auth/email-already-in-use':
+				displayedError = 'Email is already in use.';
+				break;
+			case "passwords don't match":
+				displayedError = "Passwords don't match.";
+				break;
+			case 'auth/weak-password':
+				displayedError = 'Password should be at least 6 characters';
+				break;
+
+			default:
+				displayedError = 'Login error. Please try again.';
+				break;
+		}
+		setError(displayedError);
 	};
 
 	return (
@@ -84,6 +109,7 @@ const SignUpModal = ({ throwError, closeModal, shown }) => {
 				</label>
 				<input type="submit" />
 				<input onClick={closeModal} type="button" value="Cancel" />
+				<p className={styles.errorDisplay}>{error}</p>
 			</form>
 		</section>
 	);

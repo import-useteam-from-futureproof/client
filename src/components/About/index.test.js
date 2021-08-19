@@ -9,4 +9,12 @@ describe('About me section', () => {
 		let headings = screen.queryAllByRole('heading');
 		expect(headings).toHaveLength(2);
 	});
+	test('about section is present', () => {
+		let container = screen.getByLabelText('about me section');
+		expect(container).toBeInTheDocument();
+	});
+	test('container is set to display as block', () => {
+		let container = screen.getByLabelText('about me section');
+		expect(container).toHaveStyle({ display: 'block' });
+	});
 });

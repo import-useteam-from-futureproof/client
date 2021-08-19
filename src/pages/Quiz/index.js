@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useParams } from 'react-router-dom';
 import { Chatroom, NavBar } from '../../components';
 import { QuizController } from '../../layout';
+import styles from './styles.module.css';
 import io from 'socket.io-client';
 
 export default () => {
@@ -20,10 +21,13 @@ export default () => {
 		fetchRoomData(id);
 	}, []);
 	return (
-		<main>
+		<>
 			<NavBar />
-			<Chatroom socket={socket} />
-			<QuizController socket={socket} />
-		</main>
+			<main className={styles.lobbyContainer}>
+				<h1 className={styles.welcomeHeader}>Let's play</h1>
+				<Chatroom socket={socket} />
+        <QuizController socket={socket} />
+			</main>
+		</>
 	);
 };

@@ -5,7 +5,7 @@
 	"main": ".eslintrc.js",
 	"scripts": {
 		"test": "jest --watch --verbose --setupFilesAfterEnv ./src/test/setupTests.js",
-		"coverage": "jest --watch --verbose --setupFilesAfterEnv --coverage ./src/test/setupTests.js",
+		"coverage": "jest --setupFilesAfterEnv ./src/test/setupTests.js --coverage --watchAll=false",
 		"dev": "webpack-cli serve --mode development --config config/webpack.config.dev.js",
 		"build": "webpack --config config/webpack.config.prod.js"
 	},
