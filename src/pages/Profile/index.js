@@ -18,7 +18,7 @@ export default () => {
 	const [showUpdatePasswordModal, setShowUpdatePasswordModal] = useState(false);
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-	const [userAvatar, setUserAvatar] = useState(currentUser.photoURL);
+	const [userAvatar, setUserAvatar] = useState(currentUser ? currentUser.photoURL : '');
 
 	//Show Modals
 	const handleAvatarClick = () => {
@@ -67,7 +67,7 @@ export default () => {
 				updateAvatarState={updateUserAvatar}
 			/>
 			<UpdateUsernameModal
-				displayName={currentUser.displayName}
+				displayName={currentUser ? currentUser.displayName : ''}
 				closeModal={closeUpdateUsernameModal}
 				isVisible={showUpdateUsernameModal}
 			/>
