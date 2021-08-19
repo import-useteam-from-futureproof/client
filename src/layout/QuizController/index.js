@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { LobbyWaitingRoom, Game, Results } from '../../components';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 const QuizController = ({ socket }) => {
 	const { id } = useParams();
 	const { currentUser } = useAuth();
 	const [component, setComponent] = useState('WaitingRoom');
 	const [players, setPlayers] = useState([]);
+	const { push } = useHistory();
 
 	useEffect(() => {
 		setPlayers((prevState) => [
@@ -29,6 +31,10 @@ const QuizController = ({ socket }) => {
 					{ roomId: id, userId: response.userId, score: null, username: response.username },
 				];
 			});
+		});
+
+		socket.on('endGame', () => {
+			push('/Lobby');
 		});
 
 		socket.on('advanceGame', (response) => {
@@ -68,6 +74,10 @@ const QuizController = ({ socket }) => {
 		});
 	};
 
+	const handleQuizEnd = () => {
+		socket.emit('endGame', id);
+	};
+
 	const componentToLoad = () => {
 		switch (component) {
 			case 'WaitingRoom':
@@ -75,17 +85,13 @@ const QuizController = ({ socket }) => {
 			case 'Game':
 				return <Game onGameEnd={handleGameEnd} />;
 			case 'Results':
-				return <Results results={players} />;
+				return <Results results={players} onQuizEnd={handleQuizEnd} />;
 			default:
 				return <h1>Loading component...</h1>;
 		}
 	};
 
-	return (
-		<section>
-			{componentToLoad()}
-		</section>
-	);
+	return <section>{componentToLoad()}</section>;
 };
 
 export default QuizController;

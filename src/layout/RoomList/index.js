@@ -7,8 +7,8 @@ import axios from 'axios';
 import './style.css';
 export default () => {
 	const { currentUser } = useAuth();
-	const userId = currentUser.uid;
-	const username = currentUser.displayName;
+	const userId = currentUser ? currentUser.uid : '';
+	const username = currentUser ? currentUser.displayName : '';
 	const socketServer = 'https://pursuit-of-trivia.herokuapp.com/';
 	const API_URL = process.env.REACT_APP_BASE_URL;
 	const [rooms, setRooms] = useState([]);
@@ -18,7 +18,7 @@ export default () => {
 	//fetch all rooms
 	useEffect(async () => {
 		try {
-			const { data } = await axios.get(`${API_URL}/rooms`);
+			const { data } = await axios.get(`${API_URL}/rooms/open`);
 			data.rooms.reverse();
 			setRooms(data.rooms);
 		} catch (err) {
@@ -30,10 +30,11 @@ export default () => {
 		push(`/quiz/${id}`);
 	};
 
-	const postData = async (id) => {
+	const postData = async (room) => {
 		try {
-			const post = await axios.post(`${API_URL}/rooms/${id}/join/${userId}`);
-			redirect(id);
+			const post = await axios.post(`${API_URL}/rooms/${room.id}/join/${userId}`);
+			quiz.joinRoom(room);
+			redirect(room.id);
 		} catch (err) {
 			console.log(err);
 		}
@@ -41,7 +42,6 @@ export default () => {
 
 	const joinRoom = (e, room) => {
 		e.preventDefault();
-		quiz.joinRoom(room);
 		let privacy = e.target.children[1].id;
 		if (privacy === 'Private') {
 			let privateForm = e.target.nextElementSibling;
@@ -51,17 +51,16 @@ export default () => {
 		} else {
 			const socket = io.connect(socketServer);
 			socket.emit('joinRoom', { roomName: room.id, username });
-			postData(room.id);
+			postData(room);
 		}
 	};
 
 	const joinPrivateRoom = (e, room, passcode) => {
 		e.preventDefault();
-		quiz.joinRoom(room);
 		if (e.target[0].value === passcode) {
 			const socket = io.connect(socketServer);
 			socket.emit('joinRoom', { roomName: room.id, username });
-			postData(room.id);
+			postData(room);
 		} else {
 			e.target.children[2].style.display = 'block';
 		}
