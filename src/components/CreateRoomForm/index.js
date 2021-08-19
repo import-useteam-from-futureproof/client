@@ -9,6 +9,16 @@ export default ({ onSubmit }) => {
 		password: null,
 	});
 
+	const [shown, setShown] = useState(false);
+
+	const hiddenStyle = {
+		transition: '2s',
+		maxHeight: shown ? '100px' : '0px',
+
+		pointerEvents: shown ? 'all' : 'none',
+		opacity: shown ? 1 : 0,
+	};
+
 	const handleTextInputChange = (e) => {
 		setFormData((prevState) => {
 			return { ...prevState, [e.target.id]: e.target.value };
@@ -16,6 +26,7 @@ export default ({ onSubmit }) => {
 	};
 
 	const handleCheckboxChange = (e) => {
+		setShown((prevState) => !prevState);
 		setFormData((prevState) => {
 			return {
 				...prevState,
@@ -65,19 +76,23 @@ export default ({ onSubmit }) => {
 					max={9}
 					required
 				/>
-				{formData.public ? null : (
-					<>
-						<label htmlFor="password">Room Password</label>
-						<input
-							onChange={handleTextInputChange}
-							value={formData.password}
-							id="password"
-							name="password"
-							type="text"
-							required
-						/>
-					</>
-				)}
+
+				<div style={hiddenStyle}>
+					<label style={hiddenStyle} htmlFor="password">
+						Room Password
+					</label>
+				</div>
+				<div style={hiddenStyle}>
+					<input
+						onChange={handleTextInputChange}
+						value={formData.password}
+						id="password"
+						name="password"
+						type="text"
+						required
+						style={hiddenStyle}
+					/>
+				</div>
 				<input type="submit" />
 
 				<label htmlFor="public">Private</label>
