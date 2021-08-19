@@ -93,9 +93,9 @@ export default () => {
 					>
 						<div>
 							<p>{room.name}</p>
-							<img className="formIcon" src={privacyIcon} id={privacy}></img>
 						</div>
 						<div>
+							<img className="formIcon" src={privacyIcon} id={privacy}></img>
 							<p>
 								{currentVisitors}/{room.max_room_size}
 							</p>
