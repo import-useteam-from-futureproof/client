@@ -6,7 +6,7 @@ main {
 .lobbyContainer {
 	display: grid;
 
-	grid-template-columns: 500px 1fr;
+	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 100px 1fr;
 	row-gap: 30px;
 	column-gap: 30px;

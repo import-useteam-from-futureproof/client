@@ -14,10 +14,6 @@ const Chatroom = ({ socket }) => {
 	const { roomData } = useQuiz();
 	const { currentUser } = useAuth();
 
-	const [chatHistory, setChatHistory] = useState([
-		{ username: 'chatbot', message: `Welcome to the chatroom` },
-	]);
-
 	const messagesEndRef = useRef(null);
 
 	const scrollToBottom = () => {
