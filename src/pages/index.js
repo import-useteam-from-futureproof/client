@@ -1,4 +1,4 @@
-export { default as LandingPage } from './landingPage';
+export { default as LandingPage } from './LandingPage';
 export { default as Profile } from './Profile';
 export { default as Lobby } from './Lobby';
 export { default as Quiz } from './Quiz';
