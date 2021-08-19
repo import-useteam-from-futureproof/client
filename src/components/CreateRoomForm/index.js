@@ -26,7 +26,7 @@ export default ({ onSubmit }) => {
 
 	const handleMaxPlayersChange = (e) => {
 		const { value } = e.target;
-		if (value !== '' && (value > 10 || value < 1)) {
+		if (value !== '' && (value > 9 || value < 1)) {
 			return;
 		}
 		setFormData((prevState) => {
@@ -59,7 +59,7 @@ export default ({ onSubmit }) => {
 				name="maxPlayers"
 				type="number"
 				min={1}
-				max={10}
+				max={9}
 				required
 			/>
 
