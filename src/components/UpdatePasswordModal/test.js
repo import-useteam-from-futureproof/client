@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react';
 import { default as UpdatePasswordModal } from '.';
+import { AuthProvider } from '../../contexts/AuthContext';
 
 const closeModal = jest.fn();
 

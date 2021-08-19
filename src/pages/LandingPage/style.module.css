@@ -1,0 +1,13 @@
+.reviewContainer {
+	width: 100%;
+
+	display: flex;
+	justify-content: space-evenly;
+
+	text-align: center;
+	padding: 30px;
+}
+
+.test {
+	background-color: violet;
+}
