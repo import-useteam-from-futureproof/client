@@ -47,9 +47,6 @@ const config = {
 			{
 				test: /\.(svg|jpg|gif|pdf)$/,
 				use: ['file-loader'],
-				options: {
-					limit: 10000,
-				},
 			},
 			{
 				test: /\.png$/,
