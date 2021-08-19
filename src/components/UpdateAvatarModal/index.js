@@ -62,7 +62,7 @@ export default ({ avatar, isVisible, closeModal, updateAvatarState }) => {
 	};
 
 	return (
-		<section style={modalStyle} className={styles.updateAvatarModal}>
+		<section aria-label="pick avatar" style={modalStyle} className={styles.updateAvatarModal}>
 			<div role="presentation">
 				<button className={styles.buttonClose} onClick={closeModal}>
 					&times;
