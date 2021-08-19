@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
 import { useQuiz } from '../../contexts/QuizContext';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 export default function Results({ results, onQuizEnd }) {
 	let { currentUser } = useAuth();
 	const { quizData } = useQuiz();
 	const { roomData } = useQuiz();
 	const [hostBool, setHostBool] = useState(false);
+	const [allUsersComplete, setAllUsersComplete] = useState(true);
+	const canvasRef = useRef(null);
 	useEffect(() => {
 		if (roomData.owner === currentUser.uid) {
 			setHostBool(true);
@@ -15,6 +19,49 @@ export default function Results({ results, onQuizEnd }) {
 		console.log(roomData.owner);
 		console.log(currentUser.uid);
 	}, [quizData, roomData]);
+
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		const context = canvas.getContext('2d');
+		let scores = results.map((result) => result.score);
+		let players = results.map((result) => result.username);
+		var myChart = new Chart(context, {
+			type: 'bar',
+			data: {
+				labels: players,
+				datasets: [
+					{
+						label: '# of Votes',
+						data: scores,
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)',
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)',
+						],
+						borderWidth: 1,
+					},
+				],
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+					},
+				},
+			},
+		});
+	}, [allUsersComplete]);
 
 	const renderResults = () => {
 		results.sort((a, b) => {
@@ -45,8 +92,6 @@ export default function Results({ results, onQuizEnd }) {
 			} catch (err) {
 				console.log('1 or more users score was not high enough');
 			}
-			// 	//Do I need to make all participants leave, probably not
-			// 	// let userLeaveRoomPost = await axios.post(`${BASE_URL}/rooms/${results[i].roomId/}`)
 		}
 		let closeRoom = await axios.patch(`${BASE_URL}/rooms/${results[0].roomName}/close`);
 		onQuizEnd();
@@ -56,6 +101,7 @@ export default function Results({ results, onQuizEnd }) {
 		<section>
 			<h1>Results</h1>
 			<ul>{renderResults()}</ul>
+			{allUsersComplete ? <canvas width="400" height="400" ref={canvasRef}></canvas> : <></>}
 			{!hostBool ? (
 				<></>
 			) : (
