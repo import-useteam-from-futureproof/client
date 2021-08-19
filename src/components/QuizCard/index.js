@@ -12,13 +12,21 @@ export default ({ answers, question, time, handleClick }) => {
 			></button>
 		));
 
+	const timerStyle = {
+		color: time <= 10 ? '#DF2E2E' : '#1d506d',
+
+		border: `solid 5px ${time <= 10 ? '#DF2E2E' : '#1d506d'}`,
+	};
+
 	return (
 		<div className={styles.container}>
 			<h1>Question</h1>
 			<p className={styles.question} dangerouslySetInnerHTML={{ __html: question }}></p>
 			<h2>Answers</h2>
 			<div className={styles.buttons}>{renderAnswers()}</div>
-			<p className={styles.timer}>{time}s</p>
+			<p style={timerStyle} className={styles.timer}>
+				{time}s
+			</p>
 		</div>
 	);
 };
