@@ -38,9 +38,12 @@ export default () => {
 	// 	));
 
 	const renderLeaderboardData = () =>
-		leaderboardData.map(({ username, high_score }, i) => (
+		leaderboardData.map(({ avatar_url, username, high_score }, i) => (
 			<tr key={i}>
 				<td>{i + 1}</td>
+				<td className={styles.avatar_icon}>
+					<img src={avatar_url} />
+				</td>
 				<td>{username}</td>
 				<td>{high_score}</td>
 			</tr>
@@ -60,6 +63,7 @@ export default () => {
 					<thead>
 						<tr>
 							<th>Rank</th>
+							<th></th>
 							<th>Username</th>
 							<th>Score</th>
 						</tr>

@@ -6,3 +6,8 @@
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
+
+.avatar_icon {
+	height: 50px;
+	width: 50px;
+}

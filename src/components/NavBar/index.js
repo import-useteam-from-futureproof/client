@@ -20,8 +20,8 @@ export default () => {
 
 	return (
 		<nav>
-			<a href="#">
-				<img src="../../assets/logo.svg"></img>
+			<a href="https://pursuit-of-trivia.netlify.app/">
+				<img src="https://i.imgur.com/OM3ye6t.png"></img>
 			</a>
 			<ul>
 				<li>

@@ -66,7 +66,7 @@ export default () => {
 
 	const renderRooms = () => {
 		return rooms.map((room, i) => {
-			let privacyIcon = '../../assets/lock-icon.svg';
+			let privacyIcon = 'https://i.imgur.com/qGylfjr.png';
 			let privacy = 'Private';
 			let currentVisitors = 0;
 			let passcode = '';
@@ -77,7 +77,7 @@ export default () => {
 				passcode = room.entry_pass;
 			}
 			if (room.public_room) {
-				privacyIcon = '../../assets/globe-icon.svg';
+				privacyIcon = 'https://i.imgur.com/2bR3QG2.png';
 				privacy = 'Public';
 			}
 			return (
