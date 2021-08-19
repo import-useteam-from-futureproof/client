@@ -1,0 +1,36 @@
+.button {
+	background: #1d506d;
+	color: white;
+	border-radius: 50px;
+	border-style: none;
+	margin: 20px auto;
+	font-size: 20px;
+	padding: 10px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+}
+
+.form hr {
+	margin: 0 20px;
+	width: 80%;
+}
+
+.form p {
+	display: flex;
+	justify-content: space-between;
+	margin: 12px 0;
+}
+
+.roomInfo {
+	width: 347px;
+}
+
+.form span {
+	color: #1d506d;
+	font-weight: 700;
+}

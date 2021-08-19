@@ -49,28 +49,65 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 
 	const renderHostPage = () => {
 		return (
-			<form onSubmit={quizStart}>
-				<h1>You are the host</h1>
-				<h2>Room name: {roomData.name}</h2>
-				<h2>Category: {quizData.category}</h2>
-				<h2>Difficulty: {quizData.difficulty}</h2>
-				<h2>Number of questions: {quizData.questions.length}</h2>
-				<h2>Players in room: {numPlayers}</h2>
-				<input type="submit" value="Start the quiz!"></input>
+			<form className={styles.form} onSubmit={quizStart}>
+				<h1>{roomData.name}</h1>
+				<hr />
+				<p>You are the host</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Category: <span>{quizData.category}</span>
+				</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Difficulty: <span>{quizData.difficulty}</span>
+				</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Number of questions: <span>{quizData.questions.length}</span>
+				</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Players in room: <span>{numPlayers}</span>
+				</p>
+				<hr />
+				<p>
+					You have 60 seconds to answer each question. <br /> The faster you answer the higher your
+					score!
+				</p>
+				<hr />
+				<input className={styles.button} type="submit" value="Start the quiz!"></input>
 			</form>
 		);
 	};
 
 	const renderParticipantPage = () => {
 		return (
-			<>
-				<h1>Waiting for the host to start the game..</h1>
-				<h2>Room name: {roomData.name}</h2>
-				<h2>Category: {quizData.category}</h2>
-				<h2>Difficulty: {quizData.difficulty}</h2>
-				<h2>Number of questions: {quizData.questions.length}</h2>
-				<h2>Players in room: {numPlayers}</h2>
-			</>
+			<div className={styles.form} role="presentation">
+				<h1>{roomData.name}</h1>
+				<hr />
+				<p>Waiting for the host to start the game...</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Category: <span>{quizData.category}</span>
+				</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Difficulty: <span>{quizData.difficulty}</span>
+				</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Number of questions: <span>{quizData.questions.length}</span>
+				</p>
+				<hr />
+				<p className={styles.roomInfo}>
+					Players in room: <span>{numPlayers}</span>
+				</p>
+				<hr />
+				<p>
+					You have 60 seconds to answer each question. <br /> The faster you answer the higher your
+					score!
+				</p>
+			</div>
 		);
 	};
 
