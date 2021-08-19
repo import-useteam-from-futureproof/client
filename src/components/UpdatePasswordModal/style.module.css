@@ -1,4 +1,4 @@
-.deleteAccountModal {
+.updatePasswordModal {
 	display: grid;
 	place-items: center;
 	position: fixed;
@@ -19,7 +19,7 @@
 	width: 135px;
 	height: 30px;
 
-	background: red;
+	background: #1d506d;
 	color: white;
 
 	font-family: 'Open Sans', sans-serif;
@@ -39,4 +39,9 @@
 
 .warning {
 	color: red;
+}
+
+input[id='profilePassword'],
+input[id='profileConfirmPassword'] {
+	float: right;
 }
