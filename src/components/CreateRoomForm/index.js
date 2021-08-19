@@ -42,8 +42,8 @@ export default ({ onSubmit }) => {
 
 	return (
 		<>
-			<h2 className={styles.formHeading}>Create a Quiz</h2>
 			<form className={styles.gameDisplay} onSubmit={handleFormSubmit}>
+				<h2 className={styles.formHeading}>Create a Quiz</h2>
 				<label htmlFor="roomName">Room Name</label>
 				<input
 					onChange={handleTextInputChange}
