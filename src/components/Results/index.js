@@ -2,9 +2,17 @@ import React from 'react';
 
 export default function Results({ results }) {
 	const renderResults = () => {
-		results.sort();
-		return results.map((result) => (
-			<li key={result.userId}>
+		results.sort((a, b) => {
+			if (a.score === null) {
+				return -1;
+			} else if (b.score === null) {
+				return 1;
+			} else {
+				return b.score - a.score;
+			}
+		});
+		return results.map((result, i) => (
+			<li key={i}>
 				<span>{result.username}</span>
 				<span>{result.score === null ? 'still playing' : result.score}</span>
 			</li>

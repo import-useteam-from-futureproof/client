@@ -1,4 +1,4 @@
-.deleteAccountModal {
+.updateAvatarModal {
 	display: grid;
 	place-items: center;
 	position: fixed;
@@ -10,6 +10,10 @@
 	z-index: 100;
 }
 
+.avatars {
+	text-align: center;
+}
+
 .button {
 	margin: 25px auto;
 	display: block;
@@ -19,7 +23,7 @@
 	width: 135px;
 	height: 30px;
 
-	background: red;
+	background: #1d506d;
 	color: white;
 
 	font-family: 'Open Sans', sans-serif;
@@ -39,4 +43,14 @@
 
 .warning {
 	color: red;
+}
+
+.main_avatar {
+	height: 250px;
+	width: 250px;
+}
+
+.small_avatar {
+	height: 100px;
+	width: 100px;
 }

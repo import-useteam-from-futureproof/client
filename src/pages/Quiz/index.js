@@ -19,6 +19,9 @@ export default () => {
 			userId: currentUser.uid,
 		});
 		fetchRoomData(id);
+		return () => {
+			socket.disconnect();
+		};
 	}, []);
 	return (
 		<>
