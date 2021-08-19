@@ -49,12 +49,13 @@ export default ({ avatar, isVisible, closeModal, updateAvatarState }) => {
 	};
 
 	const chooseAvatar = (avatar) => {
-		updateAvatarState(avatar);
+		setCurrentAvatar(avatar);
 	};
 
 	const handleUpdateAvatar = async () => {
 		try {
-			updateAvatar(avatar);
+			updateAvatar(currentAvatar);
+			updateAvatarState(currentAvatar);
 			closeModal();
 		} catch (err) {
 			console.error(err);
@@ -64,11 +65,17 @@ export default ({ avatar, isVisible, closeModal, updateAvatarState }) => {
 	return (
 		<section aria-label="pick avatar" style={modalStyle} className={styles.updateAvatarModal}>
 			<div role="presentation">
-				<button className={styles.buttonClose} onClick={closeModal}>
+				<button
+					className={styles.buttonClose}
+					onClick={() => {
+						closeModal();
+						setCurrentAvatar(avatar);
+					}}
+				>
 					&times;
 				</button>
 				<div className={styles.avatars}>
-					<img className={styles.main_avatar} src={avatar}></img>
+					<img className={styles.main_avatar} src={currentAvatar}></img>
 					<div className={styles.avatarPicker}>{renderAvatars(newAvatars)}</div>
 				</div>
 				<button className={styles.button} onClick={handleRefresh}>
