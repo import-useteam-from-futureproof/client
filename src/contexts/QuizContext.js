@@ -58,6 +58,7 @@ export function QuizProvider({ children }) {
 	}
 
 	function joinRoom(roomData) {
+		console.log('New room data set by join');
 		setRoomData(roomData);
 	}
 

@@ -1,6 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 
-export default function Results({ results }) {
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+export default function Results({ results, onQuizEnd }) {
 	const renderResults = () => {
 		results.sort((a, b) => {
 			if (a.score === null) {
@@ -18,10 +20,31 @@ export default function Results({ results }) {
 			</li>
 		));
 	};
+
+	const submitResults = async (e) => {
+		e.preventDefault();
+		for (let i = 0; i < results.length; i++) {
+			try {
+				let highScorePatch = await axios.patch(
+					`${BASE_URL}/user/${results[i].userId}/highscore/${results[i].score}`
+				);
+			} catch (err) {
+				console.log('1 or more users score was not high enough');
+			}
+			// 	//Do I need to make all participants leave, probably not
+			// 	// let userLeaveRoomPost = await axios.post(`${BASE_URL}/rooms/${results[i].roomId/}`)
+		}
+		let closeRoom = await axios.patch(`${BASE_URL}/rooms/${results[0].roomName}/close`);
+		onQuizEnd();
+	};
+
 	return (
 		<section>
-			<h1>Results</h1>
-			<ul>{renderResults()}</ul>
+			<form onSubmit={submitResults}>
+				<h1>Results</h1>
+				<ul>{renderResults()}</ul>
+				<input type="submit" value="End Quiz"></input>
+			</form>
 		</section>
 	);
 }
