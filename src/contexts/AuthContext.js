@@ -18,7 +18,10 @@ export function AuthProvider({ children }) {
 			.createUserWithEmailAndPassword(email, password)
 			.then((result) => {
 				const user = result.user;
-				user.updateProfile({ displayName });
+				user.updateProfile({
+					displayName,
+					photoURL: `https://avatars.dicebear.com/api/bottts/${displayName}.svg`,
+				});
 				return user;
 			})
 			.then((user) => {
@@ -51,6 +54,36 @@ export function AuthProvider({ children }) {
 		}
 	}
 
+	function updateUsername(username) {
+		return auth.currentUser
+			.updateProfile({
+				displayName: username,
+			})
+			.then((result) => {
+				axios.patch(`${BASE_URL}/user/${currentUser.uid}`, {
+					value: username,
+					type: 'username',
+				});
+			});
+	}
+
+	function updateAvatar(avatarUrl) {
+		return auth.currentUser
+			.updateProfile({
+				photoURL: avatarUrl,
+			})
+			.then((result) => {
+				axios.patch(`${BASE_URL}/user/${currentUser.uid}`, {
+					value: avatarUrl,
+					type: 'avatar',
+				});
+			});
+	}
+
+	function updatePassword(password) {
+		return auth.currentUser.updatePassword(password);
+	}
+
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			setCurrentUser(user);
@@ -67,6 +100,9 @@ export function AuthProvider({ children }) {
 		logout,
 		resetPassword,
 		deleteAccount,
+		updateAvatar,
+		updateUsername,
+		updatePassword,
 	};
 	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }

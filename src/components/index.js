@@ -19,3 +19,6 @@ export { default as LobbyWaitingRoom } from './LobbyWaitingRoom';
 export { default as Game } from './Game';
 export { default as Results } from './Results';
 export { default as QuizCard } from './QuizCard';
+export { default as UpdateUsernameModal } from './UpdateUsernameModal';
+export { default as UpdatePasswordModal } from './UpdatePasswordModal';
+export { default as UpdateAvatarModal } from './UpdateAvatarModal';
