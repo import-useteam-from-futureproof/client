@@ -39,7 +39,6 @@ const Chatroom = () => {
 		setChatInput(e.target.value);
 	};
 
-	// TODO - get the right data for here
 	const sendMessage = (e) => {
 		e.preventDefault();
 		socket.emit('newMessage', {
