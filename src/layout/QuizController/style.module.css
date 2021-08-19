@@ -12,3 +12,11 @@
 	margin-top: 0;
 	text-align: center;
 }
+
+.container h1 {
+	font-size: 28px;
+}
+
+.container h2 {
+	font-size: 24px;
+}
