@@ -49,6 +49,49 @@
 }
 #privateJoin {
 	display: none;
+	padding-bottom: 20px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+#privateJoin input {
+	width: 250px;
+	height: 30px;
+	border-radius: 50px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+	border: 2px solid #1d506d;
+	color: #1d506d;
+}
+
+#privateJoin input[type='text'] {
+	padding-left: 15px;
+	margin-right: 30px;
+}
+
+#privateJoin input[type='submit'] {
+	color: black;
+	width: 60px;
+	height: 30px;
+	border-radius: 40px;
+	border-style: none;
+	font-weight: 400;
+	text-align: center;
+	font-size: 14px;
+}
+
+#privateJoin input[type='submit']:hover {
+	cursor: pointer;
+	background-color: rgb(158, 158, 158);
+	color: white;
+}
+
+#privateJoin p {
+	flex-basis: 100%;
+	text-align: center;
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 .formIcon {

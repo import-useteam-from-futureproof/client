@@ -48,7 +48,7 @@ export default () => {
 			let privateForm = e.target.nextElementSibling;
 			let oldJoinButton = e.target[0];
 			oldJoinButton.style.display = 'none';
-			privateForm.style.display = 'block';
+			privateForm.style.display = 'flex';
 		} else {
 			const socket = io.connect(socketServer);
 			socket.emit('joinRoom', { roomName: room.id, username });
