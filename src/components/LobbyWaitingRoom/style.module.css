@@ -38,4 +38,5 @@
 .form span {
 	color: #1d506d;
 	font-weight: 700;
+	text-transform: capitalize;
 }
