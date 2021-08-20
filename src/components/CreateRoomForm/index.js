@@ -6,7 +6,7 @@ export default ({ onSubmit }) => {
 		roomName: '',
 		maxPlayers: 4,
 		public: true,
-		password: null,
+		password: '',
 	});
 
 	const [shown, setShown] = useState(false);
@@ -31,7 +31,7 @@ export default ({ onSubmit }) => {
 			return {
 				...prevState,
 				[e.target.id]: !e.target.checked,
-				password: e.target.checked ? '' : null,
+				password: '',
 			};
 		});
 	};

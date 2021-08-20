@@ -13,9 +13,9 @@ export default ({ answers, question, time, handleClick }) => {
 		));
 
 	const timerStyle = {
-		color: time <= 10 ? '#DF2E2E' : '#1d506d',
+		color: time <= 5 ? '#DF2E2E' : time <= 10 ? '#FF8300' : '#1d506d',
 
-		border: `solid 5px ${time <= 10 ? '#DF2E2E' : '#1d506d'}`,
+		border: `solid 5px ${time <= 5 ? '#DF2E2E' : time <= 10 ? '#FF8300' : '#1d506d'}`,
 	};
 
 	return (
