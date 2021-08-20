@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { useQuiz } from '../../contexts/QuizContext';
 import io from 'socket.io-client';
 import axios from 'axios';
 import './style.css';
@@ -12,18 +11,23 @@ export default () => {
 	const socketServer = 'https://pursuit-of-trivia.herokuapp.com/';
 	const API_URL = process.env.REACT_APP_BASE_URL;
 	const [rooms, setRooms] = useState([]);
-
-	const quiz = useQuiz();
 	const { push } = useHistory();
-	//fetch all rooms
-	useEffect(async () => {
-		try {
-			const { data } = await axios.get(`${API_URL}/rooms/open`);
-			data.rooms.reverse();
-			setRooms(data.rooms);
-		} catch (err) {
-			console.log(err);
-		}
+
+	useEffect(() => {
+		const fetchRooms = async () => {
+			try {
+				const { data } = await axios.get(`${API_URL}/rooms/open`);
+				data.rooms.reverse();
+				setRooms(data.rooms);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		fetchRooms();
+		const pollRoomsInterval = setInterval(fetchRooms, 5000);
+		return () => {
+			clearInterval(pollRoomsInterval);
+		};
 	}, []);
 
 	const redirect = (id) => {
