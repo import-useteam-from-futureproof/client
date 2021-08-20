@@ -13,9 +13,8 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
-	width: 80%;
 	place-items: center;
-	column-gap: 20px;
+	column-gap: 30px;
 }
 
 .button {
@@ -25,6 +24,7 @@
 	border-style: none;
 	margin: 20px auto;
 	font-size: 20px;
+	min-width: 270px;
 	padding: 10px;
 }
 
