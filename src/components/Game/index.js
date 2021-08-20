@@ -97,16 +97,13 @@ export default ({ onGameEnd }) => {
 	}, [userAnswers, remainingTime]);
 
 	return (
-		// <>
-		// 	<h1>Game</h1>
-		// </>
-		<section>
+		<>
 			<QuizCard
 				time={remainingTime}
 				handleClick={handleAnswerClick}
 				question={questions[questionNumber].question}
 				answers={currentAnswers}
 			/>
-		</section>
+		</>
 	);
 };
