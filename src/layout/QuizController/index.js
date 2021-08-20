@@ -19,7 +19,13 @@ const QuizController = ({ socket }) => {
 	useEffect(() => {
 		setPlayers((prevState) => [
 			...prevState,
-			{ roomId: id, userId: currentUser.uid, score: null, username: currentUser.displayName },
+			{
+				roomId: id,
+				userId: currentUser.uid,
+				score: null,
+				username: currentUser.displayName,
+				photoURL: currentUser.photoURL,
+			},
 		]);
 
 		socket.on('joinRoom', (response) => {
@@ -33,13 +39,18 @@ const QuizController = ({ socket }) => {
 				}
 				return [
 					...prevState,
-					{ roomId: id, userId: response.userId, score: null, username: response.username },
+					{
+						roomId: id,
+						userId: response.userId,
+						score: null,
+						username: response.username,
+						photoURL: response.photoURL,
+					},
 				];
 			});
 		});
 
 		socket.on('updatePlayers', (playerCount) => {
-			console.log(`socket: ${playerCount}`);
 			setNumPlayers(playerCount);
 		});
 
@@ -103,6 +114,7 @@ const QuizController = ({ socket }) => {
 			roomName: id,
 			userId: currentUser.uid,
 			username: currentUser.displayName,
+			photoURL: currentUser.photoURL,
 		};
 		socket.emit('userFinished', data);
 	};

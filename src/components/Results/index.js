@@ -83,26 +83,17 @@ export default function Results({ results, onQuizEnd }) {
 		return results.map((result, i) => (
 			<tr key={i}>
 				<td>{i + 1}</td>
-				{/* <td className={styles.avatar_icon}>
-					<img src={avatar_url} />
-				</td> */}
+				<td className={styles.avatar_icon}>
+					<img src={result.photoURL} alt="user avatar" />
+				</td>
 				<td>{result.username}</td>
 				<td>{result.score === null ? 'Still Playing...' : result.score}</td>
 			</tr>
-
-			// <div key={i}>
-			// 	<p className={styles.resultPara}>{i + 1}</p>
-			// 	<p className={styles.resultPara}>{result.username}:</p>
-			// 	<p className={styles.resultPara}>
-			// 		{result.score === null ? 'still playing' : result.score}
-			// 	</p>
-			// </div>
 		));
 	};
 
 	const submitResults = async (e) => {
 		e.preventDefault();
-		console.log(results);
 		for (let i = 0; i < results.length; i++) {
 			try {
 				let highScorePatch = await axios.patch(
@@ -117,12 +108,13 @@ export default function Results({ results, onQuizEnd }) {
 	};
 
 	return (
-		<section>
+		<section className={styles.container}>
 			<h1>Results</h1>
 			<table className={styles.leaderboard}>
 				<thead>
 					<tr>
 						<th>Rank</th>
+						<th></th>
 						<th>Username</th>
 						<th>Score</th>
 					</tr>
