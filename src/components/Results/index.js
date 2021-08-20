@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import styles from './style.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { useQuiz } from '../../contexts/QuizContext';
 import { Chart, registerables } from 'chart.js';
@@ -10,7 +11,7 @@ export default function Results({ results, onQuizEnd }) {
 	const { quizData } = useQuiz();
 	const { roomData } = useQuiz();
 	const [hostBool, setHostBool] = useState(false);
-	const [allUsersComplete, setAllUsersComplete] = useState(true);
+	const [allUsersComplete, setAllUsersComplete] = useState(false);
 	const canvasRef = useRef(null);
 	useEffect(() => {
 		if (roomData.owner === currentUser.uid) {
@@ -25,46 +26,48 @@ export default function Results({ results, onQuizEnd }) {
 	}, [results]);
 
 	useEffect(() => {
-		const canvas = canvasRef.current;
-		const context = canvas.getContext('2d');
-		let scores = results.map((result) => result.score);
-		let players = results.map((result) => result.username);
-		var myChart = new Chart(context, {
-			type: 'bar',
-			data: {
-				labels: players,
-				datasets: [
-					{
-						label: '# of Points',
-						data: scores,
-						backgroundColor: [
-							'rgba(255, 99, 132, 0.2)',
-							'rgba(54, 162, 235, 0.2)',
-							'rgba(255, 206, 86, 0.2)',
-							'rgba(75, 192, 192, 0.2)',
-							'rgba(153, 102, 255, 0.2)',
-							'rgba(255, 159, 64, 0.2)',
-						],
-						borderColor: [
-							'rgba(255, 99, 132, 1)',
-							'rgba(54, 162, 235, 1)',
-							'rgba(255, 206, 86, 1)',
-							'rgba(75, 192, 192, 1)',
-							'rgba(153, 102, 255, 1)',
-							'rgba(255, 159, 64, 1)',
-						],
-						borderWidth: 1,
-					},
-				],
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true,
+		if (allUsersComplete) {
+			const canvas = canvasRef.current;
+			const context = canvas.getContext('2d');
+			let scores = results.map((result) => result.score);
+			let players = results.map((result) => result.username);
+			var myChart = new Chart(context, {
+				type: 'bar',
+				data: {
+					labels: players,
+					datasets: [
+						{
+							label: '# of Points',
+							data: scores,
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)',
+							],
+							borderColor: [
+								'rgba(255, 99, 132, 1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)',
+							],
+							borderWidth: 1,
+						},
+					],
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true,
+						},
 					},
 				},
-			},
-		});
+			});
+		}
 	}, [allUsersComplete]);
 
 	const renderResults = () => {
@@ -78,10 +81,22 @@ export default function Results({ results, onQuizEnd }) {
 			}
 		});
 		return results.map((result, i) => (
-			<li key={i}>
-				<span>{result.username}</span>
-				<span>{result.score === null ? 'still playing' : result.score}</span>
-			</li>
+			<tr key={i}>
+				<td>{i + 1}</td>
+				{/* <td className={styles.avatar_icon}>
+					<img src={avatar_url} />
+				</td> */}
+				<td>{result.username}</td>
+				<td>{result.score === null ? 'Still Playing...' : result.score}</td>
+			</tr>
+
+			// <div key={i}>
+			// 	<p className={styles.resultPara}>{i + 1}</p>
+			// 	<p className={styles.resultPara}>{result.username}:</p>
+			// 	<p className={styles.resultPara}>
+			// 		{result.score === null ? 'still playing' : result.score}
+			// 	</p>
+			// </div>
 		));
 	};
 
@@ -97,20 +112,35 @@ export default function Results({ results, onQuizEnd }) {
 				console.log('1 or more users score was not high enough');
 			}
 		}
-		let closeRoom = await axios.patch(`${BASE_URL}/rooms/${results[0].roomName}/close`);
+
 		onQuizEnd();
 	};
 
 	return (
 		<section>
 			<h1>Results</h1>
-			<ul>{renderResults()}</ul>
-			{allUsersComplete ? <canvas ref={canvasRef}></canvas> : <></>}
+			<table className={styles.leaderboard}>
+				<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Username</th>
+						<th>Score</th>
+					</tr>
+				</thead>
+				<tbody>{renderResults()}</tbody>
+			</table>
+			{allUsersComplete ? (
+				<div className={styles.canvas}>
+					<canvas ref={canvasRef}></canvas>
+				</div>
+			) : (
+				<></>
+			)}
 			{!hostBool ? (
 				<></>
 			) : (
-				<form onSubmit={submitResults}>
-					<input type="submit" value="End Quiz"></input>
+				<form className={styles.form} onSubmit={submitResults}>
+					<input className={styles.button} type="submit" value="End Quiz"></input>
 				</form>
 			)}
 		</section>
