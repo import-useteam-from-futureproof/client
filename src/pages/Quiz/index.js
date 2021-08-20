@@ -17,6 +17,7 @@ export default () => {
 			roomName: id,
 			username: currentUser.displayName,
 			userId: currentUser.uid,
+			photoURL: currentUser.photoURL,
 		});
 		fetchRoomData(id);
 		return () => {
@@ -29,7 +30,7 @@ export default () => {
 			<main className={styles.lobbyContainer}>
 				<h1 className={styles.welcomeHeader}>Let's play</h1>
 				<Chatroom socket={socket} />
-        <QuizController socket={socket} />
+				<QuizController socket={socket} />
 			</main>
 		</>
 	);
