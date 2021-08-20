@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
 
@@ -20,9 +20,9 @@ export default () => {
 
 	return (
 		<nav>
-			<a href="https://pursuit-of-trivia.netlify.app/">
+			<Link to="/lobby">
 				<img src="https://i.imgur.com/OM3ye6t.png"></img>
-			</a>
+			</Link>
 			<ul>
 				<li>
 					<NavLink exact to="/lobby">
