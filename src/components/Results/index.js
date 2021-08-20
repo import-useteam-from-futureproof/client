@@ -10,7 +10,7 @@ export default function Results({ results, onQuizEnd }) {
 	const { quizData } = useQuiz();
 	const { roomData } = useQuiz();
 	const [hostBool, setHostBool] = useState(false);
-	const [allUsersComplete, setAllUsersComplete] = useState(true);
+	const [allUsersComplete, setAllUsersComplete] = useState(false);
 	const canvasRef = useRef(null);
 	useEffect(() => {
 		if (roomData.owner === currentUser.uid) {
@@ -19,13 +19,16 @@ export default function Results({ results, onQuizEnd }) {
 	}, [quizData, roomData]);
 
 	useEffect(() => {
+		console.log(results.some((result) => result.score === null));
 		if (!results.some((result) => result.score === null)) {
+			console.log('settingIsHappening');
 			setAllUsersComplete(true);
 		}
+		console.log(allUsersComplete);
 	}, [results]);
 
 	useEffect(() => {
-		if (!allUsersComplete) {
+		if (allUsersComplete) {
 			const canvas = canvasRef.current;
 			const context = canvas.getContext('2d');
 			let scores = results.map((result) => result.score);

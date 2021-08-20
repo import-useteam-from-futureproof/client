@@ -40,6 +40,10 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 
 	const quizStart = (e) => {
 		e.preventDefault();
+		let closeRoom = async () => {
+			let closeReq = await axios.patch(`${BASE_URL}/rooms/${id}/close`);
+		};
+		closeRoom();
 		hostStartedQuiz(roomData.id);
 	};
 
