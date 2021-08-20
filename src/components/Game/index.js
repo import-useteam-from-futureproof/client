@@ -8,7 +8,7 @@ export default ({ onGameEnd }) => {
 	const [userAnswers, setUserAnswers] = useState([]);
 	const [questionNumber, setQuestionNumber] = useState(0);
 	const [timerStart, setTimerStart] = useState(Date.now());
-	const [remainingTime, setRemainingTime] = useState(60);
+	const [remainingTime, setRemainingTime] = useState(20);
 	const [currentAnswers, setCurrentAnswers] = useState([]);
 
 	const setAnswers = () => {
@@ -46,13 +46,13 @@ export default ({ onGameEnd }) => {
 
 	const calculateRemaingTime = () => {
 		const currentTime = Date.now();
-		const timeLeft = 60 - Math.floor((currentTime - timerStart) / 1000);
+		const timeLeft = 20 - Math.floor((currentTime - timerStart) / 1000);
 		setRemainingTime(timeLeft);
 	};
 
 	const calculateScore = () => {
 		const scoreWeight = Math.floor(10000 / questions.length);
-		return Math.floor((scoreWeight * remainingTime) / 60);
+		return Math.floor((scoreWeight * remainingTime) / 20);
 	};
 
 	useEffect(() => {

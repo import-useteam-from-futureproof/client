@@ -71,7 +71,7 @@ const LobbyWaitingRoom = ({ hostStartedQuiz }) => {
 				</p>
 				<hr />
 				<p>
-					You have 60 seconds to answer each question. <br /> The faster you answer the higher your
+					You have 20 seconds to answer each question. <br /> The faster you answer the higher your
 					score!
 				</p>
 				<hr />
