@@ -40,8 +40,7 @@ export default () => {
 
 	const joinRoom = (e, room) => {
 		e.preventDefault();
-		let privacy = e.target.children[1].id;
-		if (privacy === 'Private') {
+		if (!room.public_room) {
 			let privateForm = e.target.nextElementSibling;
 			let oldJoinButton = e.target[0];
 			oldJoinButton.style.display = 'none';
